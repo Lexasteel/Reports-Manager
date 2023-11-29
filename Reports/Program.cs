@@ -39,7 +39,7 @@ namespace ReportMgr
         [STAThread]
         public static void Main(string[] args)
         {
-            var mode = args.Length > 0 ? args[0] : "gui"; //default to gui
+            var mode = args.Length > 0 ? args[0] : "-gui"; //default to gui
             var log = LogManager.GetCurrentClassLogger();
             try
             {
