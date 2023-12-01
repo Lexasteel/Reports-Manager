@@ -50,11 +50,11 @@ namespace AdapterOPH
 
             var npgsqlConnectionStringBuilder = new NpgsqlConnectionStringBuilder
             {
-                Host = "localhost",
-                Port = 5432,
-                Database = "Reports",
-                Username = "postgres",
-                Password = "postgres"
+                Host =host,
+                Port = port,
+                Database =database,
+                Username = username,
+                Password = password
             };
 
             var conn = new NpgsqlConnection(npgsqlConnectionStringBuilder.ConnectionString);
