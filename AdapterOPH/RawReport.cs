@@ -107,7 +107,7 @@ namespace AdapterOPH
             throw new NotImplementedException();
         }
 
-        void ReadRaw(OvHNetDataClient client, IEnumerable<HistPoint> _histPoints, HistTimeStamp _histstart, HistTimeStamp _histend)
+        void ReadRaw(OvHNetDataClient client, IEnumerable<HistPoint> _histPoints, HistTimeStamp histstart, HistTimeStamp histend)
         {
 
             int take = _histPoints.Count();
@@ -119,27 +119,27 @@ namespace AdapterOPH
             {
                 IEnumerable<HistPoint> histPoints = _histPoints.Skip(skip).Take(take);
 
-                HistItemCollection _histItems = new HistItemCollection();
-                HistSummaryCollection _histSummary = new HistSummaryCollection();
+                HistItemCollection histItems = new HistItemCollection();
+                HistSummaryCollection histSummary = new HistSummaryCollection();
                 int[] ovhErrors = new int[take];
                 TimeVal val = new TimeVal()
                 {
                     tv_sec = 1
                 };
-                DateTime tempStart = OvHNetHelper.HistTimeToDateTime(_histstart).AddSeconds(1);
-                HistTimeStamp histTsStart1s = OvHNetHelper.StringToHistTime($"{tempStart:MM'/'dd'/'yyyy HH:mm:ss}");
+                DateTime tempStart = OvHNetHelper.HistTimeToDateTime(histstart).AddSeconds(1);
+                HistTimeStamp histTsStart1S = OvHNetHelper.StringToHistTime($"{tempStart:MM'/'dd'/'yyyy HH:mm:ss}");
                 
-                HelpersAdapter.ReadProcessed(client, histPoints, _histstart, histTsStart1s, val, (uint)take, (uint)take, ovhErrors, Report, 0);
+                HelpersAdapter.ReadProcessed(client, histPoints, histstart, histTsStart1S, val, (uint)take, (uint)take, ovhErrors, Report, 0);
 
 
 
-                uint _maxItems = Convert.ToUInt32(take) * 2000;
-                int[] ovhErrorsRaw = new int[_maxItems];
-                PointParamsCollection _pointParams = HelpersAdapter.PointParamsCollectionInit(histPoints, true);
+                uint maxItems = Convert.ToUInt32(take) * 2000;
+                int[] ovhErrorsRaw = new int[maxItems];
+                PointParamsCollection pointParams = HelpersAdapter.PointParamsCollectionInit(histPoints, true);
                 var r = -1;
                
 
-                    r = client.SyncReadRaw(_histstart, _histend, false, (uint)histPoints.Count(), _pointParams, _histSummary, ref _maxItems, _histItems, ovhErrorsRaw);
+                    r = client.SyncReadRaw(histstart, histend, false, (uint)histPoints.Count(), pointParams, histSummary, ref maxItems, histItems, ovhErrorsRaw);
 
                 
 
@@ -152,23 +152,23 @@ namespace AdapterOPH
 
                     foreach (HistPoint item in histPoints)
                     {
-                        item.F_Values = new SortedDictionary<DateTime, float>();
+                        item.FValues = new SortedDictionary<DateTime, float>();
                     }
                     continue;
                 }
                 skip = skip + take;
                 Console.WriteLine("Start ParseRaw; ID=" + Task.CurrentId);
                 
-                    HelpersAdapter.ParseData(_histItems, histPoints, Report.sampletimeformatid);
+                    HelpersAdapter.ParseData(histItems, histPoints, Report.sampletimeformatid);
           
                 while (r > 0)
                 {
 
-                    HistItemCollection histItems = new HistItemCollection();
-                    _maxItems = Convert.ToUInt32(take) * 2000;
-                    ovhErrorsRaw = new int[_maxItems];
-                    _histSummary = new HistSummaryCollection();
-                    r = client.SyncReadNextRaw(ref _maxItems, histItems, ovhErrorsRaw);
+                    HistItemCollection histItemsNext = new HistItemCollection();
+                    maxItems = Convert.ToUInt32(take) * 2000;
+                    ovhErrorsRaw = new int[maxItems];
+                    histSummary = new HistSummaryCollection();
+                    r = client.SyncReadNextRaw(ref maxItems, histItemsNext, ovhErrorsRaw);
                     if (r < 0)
                     {
                         
@@ -177,7 +177,7 @@ namespace AdapterOPH
                             take = take / 2;
                             foreach (HistPoint item in histPoints)
                             {
-                                item.F_Values = new SortedDictionary<DateTime, float>();
+                                item.FValues = new SortedDictionary<DateTime, float>();
                             }
                         
                     }
@@ -185,7 +185,7 @@ namespace AdapterOPH
 
                     //Console.WriteLine("start ParseNextRaw; ID=" + Task.CurrentId);
                     
-                        HelpersAdapter.ParseData(histItems, histPoints, Report.sampletimeformatid);
+                        HelpersAdapter.ParseData(histItemsNext, histPoints, Report.sampletimeformatid);
 
                 }
                 //int value = Convert.ToInt32(histPoints.LastOrDefault().pointposn * 1.0 / Report.HistPoints.Count * 100.0);

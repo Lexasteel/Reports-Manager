@@ -48,14 +48,14 @@ namespace ReportMgr
                     case "-gui":
                         Application.EnableVisualStyles();
                         Application.SetCompatibleTextRenderingDefault(false);
-                        Application.Run(new frmMain());
+                        Application.Run(new FrmMain());
                         break;
                     case "-con":
                     {
                         AttachConsole(-1);
                         Console.WriteLine();
                         Console.Write("Connect to database");
-                        var t = ReportDefinition.GetByEnabled(ConnectDB.GetConnection());
+                        var t = ReportDefinition.GetByEnabled(FrmMain.DataConnection());
                         while (!t.IsCompleted && !t.IsFaulted)
                         {
                             Console.Write(".");
@@ -73,14 +73,14 @@ namespace ReportMgr
                         {
                             var res = true;
                             report.HistPoints = ReportDefinition
-                                .GetHistPoints(ConnectDB.GetConnection(), report.reportdefinitionid).Result;
-                            report.Historians = Historian.GetAll(ConnectDB.GetConnection()).Result;
+                                .GetHistPoints(FrmMain.DataConnection(), report.reportdefinitionid).Result;
+                            report.Historians = Historian.GetAll(FrmMain.DataConnection()).Result;
 
                             while (res)
                             {
-                                var h_count = (66 - report.reportname.Length) / 2;
-                                var header = "|" + new string(' ', h_count) + report.reportname +
-                                             new string(' ', h_count) + "|";
+                                var hCount = (66 - report.reportname.Length) / 2;
+                                var header = "|" + new string(' ', hCount) + report.reportname +
+                                             new string(' ', hCount) + "|";
                                 Console.WriteLine(new string('=', header.Length));
                                 Console.WriteLine(header);
                                 Console.WriteLine(new string('=', header.Length));
@@ -92,12 +92,12 @@ namespace ReportMgr
                                 res = target.Generate();
                                 if (res)
                                 {
-                                    var NextEvent = HelpersAdapter.DateCalc(report.nextevent.Value,
+                                    var nextEvent = HelpersAdapter.DateCalc(report.nextevent.Value,
                                         report.timeperiodinfo, report.timeformatid);
-                                    report.nextevent = NextEvent;
+                                    report.nextevent = nextEvent;
                                     report.lastused = DateTime.Now;
-                                    ReportDefinition.Update(ConnectDB.GetConnection(), report);
-                                    if (NextEvent > DateTime.Now)
+                                    ReportDefinition.Update(FrmMain.DataConnection(), report);
+                                    if (nextEvent > DateTime.Now)
                                     {
                                         res = false;
                                     }

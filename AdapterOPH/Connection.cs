@@ -43,17 +43,19 @@ namespace AdapterOPH
         }
     }
 
-    public class ConnectDB
+    public class ConnectDb
     {
-      public static IDbConnection GetConnection()
+      public static IDbConnection GetConnection(string host, int port, string database, string username, string password)
         {
 
-            NpgsqlConnectionStringBuilder npgsqlConnectionStringBuilder = new NpgsqlConnectionStringBuilder();
-            npgsqlConnectionStringBuilder.Host = "localhost";
-            npgsqlConnectionStringBuilder.Port = 5432;
-            npgsqlConnectionStringBuilder.Database = "Reports";
-            npgsqlConnectionStringBuilder.Username = "postgres";
-            npgsqlConnectionStringBuilder.Password = "postgres";
+            var npgsqlConnectionStringBuilder = new NpgsqlConnectionStringBuilder
+            {
+                Host = "localhost",
+                Port = 5432,
+                Database = "Reports",
+                Username = "postgres",
+                Password = "postgres"
+            };
 
             var conn = new NpgsqlConnection(npgsqlConnectionStringBuilder.ConnectionString);
             return conn;

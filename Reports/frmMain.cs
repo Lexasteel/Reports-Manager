@@ -13,23 +13,26 @@ using NLog;
 using Reports.Properties;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.Office.Utils;
 
 
 namespace Reports
 {
-    public partial class frmMain : XtraForm
+    public partial class FrmMain : XtraForm
     {
-        public frmMain()
+        public FrmMain()
         {
             InitializeComponent();
             this.Load += FrmMain_Load;
             this.FormClosing += FrmMain_FormClosing;
-          
+
             timer1.Tick += Timer1_Tick;
             gViewMain.FocusedRowChanged += GViewMain_FocusedRowChanged;
             gViewMain.DoubleClick += GwMain_DoubleClick;
@@ -45,6 +48,7 @@ namespace Reports
             barButtonTimerStop.ItemClick += BarButtonTimerStop_ItemClick;
 
             barButtonSaveOptions.ItemClick += BarButtonSaveOptions_ItemClick;
+            barButtonSetting.ItemClick += BarButtonSetting_ItemClick;
 
             btnEditDestinationInfo.ButtonClick += BtnEditDestinationInfo_ButtonClick;
             lookUpTimeFormat.EditValueChanged += LookUpTimeFormat_EditValueChanged;
@@ -63,6 +67,11 @@ namespace Reports
 
         }
 
+        private void BarButtonSetting_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            var frmSettings = new FormSettings();
+            frmSettings.ShowDialog();
+        }
 
         private const string Version = "Менеджер отчетов 3.0";
         private const int Panel2Width = 518;
@@ -77,15 +86,15 @@ namespace Reports
         }
         private readonly Logger _log = LogManager.GetCurrentClassLogger();
         private readonly BindingSource _bindingSourceMain = new BindingSource();
-        private List<int> DeletedHistpoints = new List<int>();
-        private List<HistPoint> ImportedHistpoints = new List<HistPoint>();
+        private List<int> _deletedHistpoints = new List<int>();
+        private List<HistPoint> _importedHistpoints = new List<HistPoint>();
         private readonly BindingSource _bindingSourceDetail = new BindingSource();
         //static CancellationTokenSource _cancelTokenSource = new CancellationTokenSource();
         //CancellationToken _token = _cancelTokenSource.Token;
 
         private async void BindingData(bool reset = false)
         {
-            var reports = await ReportDefinition.GetAll(ConnectDB.GetConnection());
+            var reports = await ReportDefinition.GetAll(DataConnection());
             _bindingSourceMain.DataSource = reports.OrderBy(o => o.reportdefinitionid).ToList();
             gridConrolMain.DataSource = _bindingSourceMain;
             if (!reset)
@@ -130,7 +139,7 @@ namespace Reports
             this.Text = Version;
             var h = (int)Settings.Default["Heigth"];
             var w = (int)Settings.Default["Width"];
-   
+
 
             this.ClientSize = new Size(w, h);
             Screen myScreen = Screen.FromControl(this);
@@ -211,7 +220,7 @@ namespace Reports
         private async void Select_Detail(int id, State state)
         {
             var report = (ReportDefinition)_bindingSourceMain.Current;
-            var points = await ReportDefinition.GetHistPoints(ConnectDB.GetConnection(), report.reportdefinitionid);
+            var points = await ReportDefinition.GetHistPoints(DataConnection(), report.reportdefinitionid);
             report.HistPoints = report.reportdefinitionid > 0
                 ? points
                 : new List<HistPoint>();
@@ -281,7 +290,7 @@ namespace Reports
         {
             var report = (ReportDefinition)_bindingSourceMain.Current;
             var dialogResult = DialogResult.No;
-            var reportDb = await ReportDefinition.GetById(ConnectDB.GetConnection(), report.reportdefinitionid);
+            var reportDb = await ReportDefinition.GetById(DataConnection(), report.reportdefinitionid);
             var changesReport = (reportDb != null && !report.Equals(reportDb));
             var changesHistPoints = Task.Run(HistPointCompare).Result;
 
@@ -307,8 +316,8 @@ namespace Reports
         {
             var report = (ReportDefinition)_bindingSourceMain.Current;
             var gridList = (List<HistPoint>)_bindingSourceDetail.List;
-            var ListDB = await ReportDefinition.GetHistPoints(ConnectDB.GetConnection(), report.reportdefinitionid);
-            var result = gridList.Except(ListDB).ToList();
+            var listDb = await ReportDefinition.GetHistPoints(DataConnection(), report.reportdefinitionid);
+            var result = gridList.Except(listDb).ToList();
             return result;
         }
         private async void BtnSave_Click(object sender, EventArgs e)
@@ -342,7 +351,7 @@ namespace Reports
 
             if (report.HistPoints == null)
             {
-                report.HistPoints = await ReportDefinition.GetHistPoints(ConnectDB.GetConnection(), id);
+                report.HistPoints = await ReportDefinition.GetHistPoints(DataConnection(), id);
             }
 
             if (report.HistPoints != null)
@@ -356,13 +365,13 @@ namespace Reports
 
             if (id == 0)
             {
-                var reportDefId = await ReportDefinition.Insert(ConnectDB.GetConnection(), report);
+                var reportDefId = await ReportDefinition.Insert(DataConnection(), report);
                 if (report.HistPoints != null)
                     for (var i = 0; i < report.HistPoints.Count; i++)
                     {
                         report.HistPoints[i].pointposn = i + 1;
                         report.HistPoints[i].reportdefinitionid = reportDefId;
-                        await HistPoint.Insert(ConnectDB.GetConnection(), report.HistPoints[i]);
+                        await HistPoint.Insert(DataConnection(), report.HistPoints[i]);
                     }
 
                 return;
@@ -380,26 +389,26 @@ namespace Reports
                     if (p.reportdefinitionid == 0)
                     {
                         p.reportdefinitionid = report.reportdefinitionid;
-                        var i = await HistPoint.Insert(ConnectDB.GetConnection(), p);
+                        var i = await HistPoint.Insert(DataConnection(), p);
 
                     }
-                    await HistPoint.Update(ConnectDB.GetConnection(), p);
+                    await HistPoint.Update(DataConnection(), p);
                 }
             }
 
-            if (!report.Equals(await ReportDefinition.GetById(ConnectDB.GetConnection(), report.reportdefinitionid)))
+            if (!report.Equals(await ReportDefinition.GetById(DataConnection(), report.reportdefinitionid)))
             {
-                await ReportDefinition.Update(ConnectDB.GetConnection(), report);
+                await ReportDefinition.Update(DataConnection(), report);
             }
 
 
-            if (DeletedHistpoints.Count > 0)
+            if (_deletedHistpoints.Count > 0)
             {
-                var delHistPoints = new List<int>(DeletedHistpoints);
+                var delHistPoints = new List<int>(_deletedHistpoints);
                 foreach (var p in delHistPoints)
                 {
-                    await HistPoint.Delete(ConnectDB.GetConnection(), p);
-                    DeletedHistpoints.Remove(p);
+                    await HistPoint.Delete(DataConnection(), p);
+                    _deletedHistpoints.Remove(p);
                 }
             }
 
@@ -555,7 +564,7 @@ namespace Reports
                     }
                     autoReport.nextevent = HelpersAdapter.DateCalc(autoReport.nextevent.Value, autoReport.timeperiodinfo, autoReport.timeformatid);
                     autoReport.lastused = DateTime.Now;
-                    await ReportDefinition.Update(ConnectDB.GetConnection(), autoReport);
+                    await ReportDefinition.Update(DataConnection(), autoReport);
                     // this.Invoke(new Action(() => gViewMain.RefreshData()));
                 }
             }
@@ -565,8 +574,8 @@ namespace Reports
         {
             var id = report.reportdefinitionid;
 
-            report.HistPoints = await ReportDefinition.GetHistPoints(ConnectDB.GetConnection(), report.reportdefinitionid);
-            report.Historians = await Historian.GetAll(ConnectDB.GetConnection());
+            report.HistPoints = await ReportDefinition.GetHistPoints(DataConnection(), report.reportdefinitionid);
+            report.Historians = await Historian.GetAll(DataConnection());
 
             switch (report.reporttypeid)
             {
@@ -607,16 +616,16 @@ namespace Reports
         {
             var report = (ReportDefinition)_bindingSourceMain.Current;
 
-            var id = await ReportDefinition.Insert(ConnectDB.GetConnection(), report);
-            var new_report = await ReportDefinition.GetById(ConnectDB.GetConnection(), id);
-            new_report.reportname += " - Копия";
-            await ReportDefinition.Update(ConnectDB.GetConnection(), new_report);
+            var id = await ReportDefinition.Insert(DataConnection(), report);
+            var newReport = await ReportDefinition.GetById(DataConnection(), id);
+            newReport.reportname += " - Копия";
+            await ReportDefinition.Update(DataConnection(), newReport);
 
             var points = _bindingSourceDetail.List;
             foreach (HistPoint item in points)
             {
-                item.reportdefinitionid = new_report.reportdefinitionid;
-                await HistPoint.Insert(ConnectDB.GetConnection(), item);
+                item.reportdefinitionid = newReport.reportdefinitionid;
+                await HistPoint.Insert(DataConnection(), item);
             }
             BindingData(true);
 
@@ -629,7 +638,7 @@ namespace Reports
         }
         private async void OnGenerateRowClick(object sender, EventArgs eventArgs)
         {
-            using (var frmInput = new formInputDates())
+            using (var frmInput = new FormInputDates())
             {
 
                 Timer_Stop(true);
@@ -645,7 +654,7 @@ namespace Reports
                 SwitchWhenGenerate(true);
                 if (!result) return;
                 report.lastused = DateTime.Now;
-                await ReportDefinition.Update(ConnectDB.GetConnection(), report);
+                await ReportDefinition.Update(DataConnection(), report);
             }
             this.Invoke(new Action(() => gViewMain.RefreshData()));
             Timer_Start();
@@ -671,11 +680,11 @@ namespace Reports
                 var name = gViewMain.GetRowCellValue(item, "reportname");
                 _log.Info($"Отчет {name} удален!");
                 var id = (int)gViewMain.GetRowCellValue(item, "reportdefinitionid");
-                await ReportDefinition.Delete(ConnectDB.GetConnection(), id);
-                var points = await ReportDefinition.GetHistPoints(ConnectDB.GetConnection(), id);
+                await ReportDefinition.Delete(DataConnection(), id);
+                var points = await ReportDefinition.GetHistPoints(DataConnection(), id);
                 foreach (var point in points.Select(s => s.histpointid))
                 {
-                    await HistPoint.Delete(ConnectDB.GetConnection(), point);
+                    await HistPoint.Delete(DataConnection(), point);
                 }
 
             }
@@ -745,7 +754,7 @@ namespace Reports
         {
             var handle = gViewDetail.FocusedRowHandle;
             var id = (int)gViewDetail.GetRowCellValue(handle, "histpointid");
-            DeletedHistpoints.Add(id);
+            _deletedHistpoints.Add(id);
             gViewDetail.DeleteRow(handle);
         }
         private void BtnAddPoint_Click(object sender, EventArgs e)
@@ -778,7 +787,7 @@ namespace Reports
             var file = File.ReadAllLines(dialog.FileName);
             if (dialogPoints == DialogResult.Yes)
             {
-                if (report.HistPoints != null) DeletedHistpoints = new List<int>(report.HistPoints.Select(s => s.histpointid));
+                if (report.HistPoints != null) _deletedHistpoints = new List<int>(report.HistPoints.Select(s => s.histpointid));
                 report.HistPoints.Clear();
                 pointposn = 1;
             }
@@ -868,7 +877,7 @@ namespace Reports
         void OnExplorerRowClick(object sender, EventArgs e)
         {
             var report = (ReportDefinition)_bindingSourceMain.Current;
-            if (report != null) ImportExport.ReportExplorer(report.destinationinfo);
+            Process.Start("explorer.exe", @Path.GetDirectoryName(report.destinationinfo));
         }
         #endregion
         private void InitgViewMain()
@@ -891,7 +900,7 @@ namespace Reports
             });
             gViewMain.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn()
             {
-                Name = "Unit",
+                Name = "unit",
                 FieldName = "unit",
                 Caption = "Блок",
                 Visible = true,
@@ -966,7 +975,7 @@ namespace Reports
 
             gViewMain.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn()
             {
-                Name = "Enable",
+                Name = "enable",
                 FieldName = "enable",
                 Caption = "Авто",
                 Visible = true,
@@ -1098,6 +1107,16 @@ namespace Reports
 
             });
             #endregion
+        }
+
+        public static IDbConnection DataConnection()
+        {
+            var host = (string)Settings.Default["Host"];
+            var port = (int)Settings.Default["Port"];
+            var database = (string)Settings.Default["Database"];
+            var user = (string)Settings.Default["User"];
+            var pass = (string)Settings.Default["Password"];
+            return ConnectDb.GetConnection(host, port, database, user, pass);
         }
     }
 }

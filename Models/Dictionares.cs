@@ -70,7 +70,7 @@ namespace Models
         };
         public static List<Item> Headers { get; set; } = new List<Item>() {
             new Item { Id = 1, Value = "KKS" },
-            new Item { Id = 2, Value = "Description" },
+            new Item { Id = 2, Value = "description" },
             new Item { Id = 3, Value = "Eng.Units" },
         };
     }

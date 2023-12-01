@@ -10,13 +10,13 @@ namespace Models
     public class Historian
     {
         [Key]
-        public int HistorianID { get; set; }
-        public string IP { get; set; } = String.Empty;
-        public int Unit { get; set; }
+        public int historianId { get; set; }
+        public string ip { get; set; } = String.Empty;
+        public int unit { get; set; }
 
-        public string UnitNet { get; set; }
+        public string unitnet { get; set; }
  
-        public string Password { get; set; }
+        public string password { get; set; }
       
         public static async Task<IEnumerable<Historian>> GetAll(IDbConnection connection)
         {

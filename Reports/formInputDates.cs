@@ -2,9 +2,9 @@
 
 namespace Reports
 {
-    public partial class formInputDates : DevExpress.XtraEditors.XtraForm
+    public partial class FormInputDates : DevExpress.XtraEditors.XtraForm
     {
-        public formInputDates()
+        public FormInputDates()
         {
             InitializeComponent();
 

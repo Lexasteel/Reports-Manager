@@ -29,11 +29,11 @@ namespace Models
         [Write(false)]
         public string Units { get; set; } = string.Empty;
         [Write(false)]
-        public int Scan_msec { get; set; }
+        public int ScanMsec { get; set; }
         [Write(false)]
-        public int Significant_Digits { get; set; }
+        public int SignificantDigits { get; set; }
         [Write(false)]
-        public SortedDictionary<DateTime, float> F_Values { get; set; } = new SortedDictionary<DateTime, float>();
+        public SortedDictionary<DateTime, float> FValues { get; set; } = new SortedDictionary<DateTime, float>();
 
         [Write(false)]
         public uint Handle { get; set; }
@@ -112,20 +112,20 @@ namespace Models
         }
         public override int GetHashCode()
         {
-            var IDHashCode = this.histpointid.GetHashCode();
-            var PosnHashCode = this.pointposn == null ? 0 : this.pointposn.GetHashCode();
-            var NameHashCode = this.pointname == null ? 0 : this.pointname.GetHashCode();
-            var BitHashCode = this.bitnumber == null ? 0 : this.bitnumber.GetHashCode();
-            var ProcHashCode = this.proctype == null ? 0 : this.proctype.GetHashCode();
-            var IntegHashCode = this.integconst == null ? 0 : this.integconst.GetHashCode();
-            var GlitchHashCode = this.glitchdetect == null ? 0 : this.glitchdetect.GetHashCode();
-            var SummarHashCode = this.summaryenable == null ? 0 : this.summaryenable.GetHashCode();
-            var RepoIDHashCode = this.reportdefinitionid == null ? 0 : this.reportdefinitionid.GetHashCode();
-            var DescrHashCode = this.description == null ? 0 : this.description.GetHashCode();
-            var FormatHashCode = this.format == null ? 0 : this.format.GetHashCode();
+            var idHashCode = this.histpointid.GetHashCode();
+            var posnHashCode = this.pointposn == null ? 0 : this.pointposn.GetHashCode();
+            var nameHashCode = this.pointname == null ? 0 : this.pointname.GetHashCode();
+            var bitHashCode = this.bitnumber == null ? 0 : this.bitnumber.GetHashCode();
+            var procHashCode = this.proctype == null ? 0 : this.proctype.GetHashCode();
+            var integHashCode = this.integconst == null ? 0 : this.integconst.GetHashCode();
+            var glitchHashCode = this.glitchdetect == null ? 0 : this.glitchdetect.GetHashCode();
+            var summarHashCode = this.summaryenable == null ? 0 : this.summaryenable.GetHashCode();
+            var repoIdHashCode = this.reportdefinitionid == null ? 0 : this.reportdefinitionid.GetHashCode();
+            var descrHashCode = this.description == null ? 0 : this.description.GetHashCode();
+            var formatHashCode = this.format == null ? 0 : this.format.GetHashCode();
 
-            return IDHashCode ^ NameHashCode ^ PosnHashCode ^ BitHashCode ^ ProcHashCode ^ IntegHashCode 
-                   ^ GlitchHashCode ^ SummarHashCode ^ RepoIDHashCode ^ DescrHashCode ^ FormatHashCode;
+            return idHashCode ^ nameHashCode ^ posnHashCode ^ bitHashCode ^ procHashCode ^ integHashCode 
+                   ^ glitchHashCode ^ summarHashCode ^ repoIdHashCode ^ descrHashCode ^ formatHashCode;
         }
     }
 

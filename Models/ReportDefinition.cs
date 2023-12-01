@@ -116,7 +116,7 @@ namespace Models
         {
             var now = DateTime.Now;
             var enable = true;
-            var sql = "SELECT * FROM reportdefinitions WHERE nextevent < @Now AND enable=@Enable";
+            var sql = "SELECT * FROM reportdefinitions WHERE nextevent < @Now AND enable=@enable";
             //Console.WriteLine(sql);
             var results = await connection.QueryAsync<ReportDefinition>(sql, new { Now = now, Enable = enable }).ConfigureAwait(false);
             connection.Close();

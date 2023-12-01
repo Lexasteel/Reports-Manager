@@ -58,7 +58,7 @@ namespace AdapterOPH
                     State(Progress, null, $"Getting point attributes: {unit.Key[1]}");
 
                     if (Report.Historians == null) continue;
-                    var ip = Report.Historians.FirstOrDefault(f => f.UnitNet == unit.Key[1])?.IP;
+                    var ip = Report.Historians.FirstOrDefault(f => f.unitnet == unit.Key[1])?.ip;
                     var connection = new ConnectToHist();
 
                     var conn = connection.Open(ip, this);
@@ -92,7 +92,7 @@ namespace AdapterOPH
                             HistPoint h = unit.Skip(sk).Take(p - sk).ToList()[i];
                             h.Handle = items[i];
                             h.Type = collection.Item(i).DataType;
-                            h.Scan_msec = collection.Item(i).scanMsecs;
+                            h.ScanMsec = collection.Item(i).scanMsecs;
 
                             if (h.Handle > 0)
                             {
@@ -151,7 +151,7 @@ namespace AdapterOPH
                 {
                     if (Report.Historians != null)
                     {
-                        var ip = Report.Historians.FirstOrDefault(f => f.UnitNet == unit.Key)?.IP;
+                        var ip = Report.Historians.FirstOrDefault(f => f.unitnet == unit.Key)?.ip;
                         var conn = new ConnectToHist();
                         var client = new OvHNetDataClient();
                         client.Connect(conn.Open(ip, this));
@@ -216,13 +216,13 @@ namespace AdapterOPH
             this.ReportChanged -= Report_ReportChanged;
             if (Report.HistPoints != null)
             {
-                var count = Report.HistPoints.Select(s => s.F_Values.Count).Sum();
+                var count = Report.HistPoints.Select(s => s.FValues.Count).Sum();
                 if (count > 0)
                 {
                     //ExportFile.Export(report);
                     foreach (var item in Report.HistPoints)
                     {
-                        item.F_Values = new SortedDictionary<DateTime, float>();
+                        item.FValues = new SortedDictionary<DateTime, float>();
                     }
                 }
                 else

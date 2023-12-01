@@ -1,6 +1,6 @@
 ﻿namespace Reports
 {
-    partial class frmMain
+    partial class FrmMain
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.gridConrolMain = new DevExpress.XtraGrid.GridControl();
@@ -55,6 +55,7 @@
             this.barSpinCycle = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.barButtonSaveOptions = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonSetting = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barStaticTime = new DevExpress.XtraBars.BarStaticItem();
             this.barStaticInfo = new DevExpress.XtraBars.BarStaticItem();
@@ -140,11 +141,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gViewDetail)).BeginInit();
             this.SuspendLayout();
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // splitContainerControl1
             // 
@@ -348,8 +344,9 @@
             this.barButtonSaveOptions,
             this.barButtonGenerate,
             this.barButtonCopy,
-            this.barEditItem1});
-            this.barManager1.MaxItemId = 14;
+            this.barEditItem1,
+            this.barButtonSetting});
+            this.barManager1.MaxItemId = 15;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemProgressBar1,
             this.repositoryItemSpinEdit1,
@@ -371,7 +368,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonTimerStart),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonTimerStop),
             new DevExpress.XtraBars.LinkPersistInfo(this.barSpinCycle),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonSaveOptions)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonSaveOptions),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonSetting)});
             this.bar1.Text = "Tools";
             // 
             // barButtonNew
@@ -442,6 +440,13 @@
             this.barButtonSaveOptions.Id = 10;
             this.barButtonSaveOptions.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonSaveOptions.ImageOptions.SvgImage")));
             this.barButtonSaveOptions.Name = "barButtonSaveOptions";
+            // 
+            // barButtonSetting
+            // 
+            this.barButtonSetting.Caption = "Settings";
+            this.barButtonSetting.Id = 14;
+            this.barButtonSetting.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonSetting.ImageOptions.SvgImage")));
+            this.barButtonSetting.Name = "barButtonSetting";
             // 
             // bar3
             // 
@@ -1010,7 +1015,7 @@
             this.Controls.Add(this.barDockControlTop);
             this.IconOptions.Image = ((System.Drawing.Image)(resources.GetObject("frmMain.IconOptions.Image")));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.Name = "frmMain";
+            this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Менеджер отчетов ver. 3.0";
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).EndInit();
@@ -1130,5 +1135,6 @@
         private DevExpress.XtraEditors.TextEdit txtReportName;
         private DevExpress.XtraBars.BarEditItem barEditItem1;
         private DevExpress.XtraEditors.Repository.RepositoryItemProgressBar repositoryItemProgressBar2;
+        private DevExpress.XtraBars.BarButtonItem barButtonSetting;
     }
 }
