@@ -6,6 +6,7 @@ namespace Models
     {
         public int Id { get; set; }
         public string Value { get; set; }
+        public string Description { get; set; }
     }
     public static class Dictionares
     {
@@ -69,9 +70,9 @@ namespace Models
                new Item { Id = 31, Value ="Average Rate Of Change" }
         };
         public static List<Item> Headers { get; set; } = new List<Item>() {
-            new Item { Id = 1, Value = "KKS" },
-            new Item { Id = 2, Value = "description" },
-            new Item { Id = 3, Value = "Eng.Units" },
+            new Item { Value = "1", Description = "KKS" },
+            new Item { Value = "2", Description = "Description" }, 
+            new Item {Value = "3", Description  = "Eng.Units" },
         };
     }
 }

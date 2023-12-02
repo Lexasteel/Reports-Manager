@@ -20,7 +20,6 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevExpress.Office.Utils;
 
 
 namespace Reports
@@ -92,45 +91,41 @@ namespace Reports
         //static CancellationTokenSource _cancelTokenSource = new CancellationTokenSource();
         //CancellationToken _token = _cancelTokenSource.Token;
 
-        private async void BindingData(bool reset = false)
+        private async void DataBinding(bool reset = false)
         {
             var reports = await ReportDefinition.GetAll(DataConnection());
             _bindingSourceMain.DataSource = reports.OrderBy(o => o.reportdefinitionid).ToList();
             gridConrolMain.DataSource = _bindingSourceMain;
-            if (!reset)
-            {
-
-                txtReportName.DataBindings.Add("EditValue", _bindingSourceMain, "reportname");
-                cmbUnit.DataBindings.Add("EditValue", _bindingSourceMain, "unit");
-                btnEditDestinationInfo.DataBindings.Add("EditValue", _bindingSourceMain, "destinationinfo");
-                deNextEvent.DataBindings.Add("EditValue", _bindingSourceMain, "nextevent", true);
-                chkEnable.DataBindings.Add("EditValue", _bindingSourceMain, "enable", true);
-                tsOffSet.DataBindings.Add("EditValue", _bindingSourceMain, "shift", true);
-                chZip.DataBindings.Add("EditValue", _bindingSourceMain, "arhive", true);
+            if (reset) return;
+            txtReportName.DataBindings.Add("EditValue", _bindingSourceMain, "reportname");
+            cmbUnit.DataBindings.Add("EditValue", _bindingSourceMain, "unit");
+            btnEditDestinationInfo.DataBindings.Add("EditValue", _bindingSourceMain, "destinationinfo");
+            deNextEvent.DataBindings.Add("EditValue", _bindingSourceMain, "nextevent", true);
+            chkEnable.DataBindings.Add("EditValue", _bindingSourceMain, "enable", true);
+            tsOffSet.DataBindings.Add("EditValue", _bindingSourceMain, "shift", true);
+            chZip.DataBindings.Add("EditValue", _bindingSourceMain, "arhive", true);
 
 
-                LookUpEdit_DataBinding(lkpReportType, Dictionares.ReportType, "reporttypeid");
-                LookUpEdit_DataBinding(lkpReportDest, Dictionares.DestinationType, "reportdestid");
-                LookUpEdit_DataBinding(lookUpTimeFormat, Dictionares.TimeType, "timeformatid");
-                LookUpEdit_DataBinding(lookUpSample, Dictionares.TimeType, "sampletimeformatid");
+            LookUpEdit_DataBinding(lkpReportType, Dictionares.ReportType, "reporttypeid");
+            LookUpEdit_DataBinding(lkpReportDest, Dictionares.DestinationType, "reportdestid");
+            LookUpEdit_DataBinding(lookUpTimeFormat, Dictionares.TimeType, "timeformatid");
+            LookUpEdit_DataBinding(lookUpSample, Dictionares.TimeType, "sampletimeformatid");
 
-                foreach (var item in Dictionares.Headers.Select(header => new CheckedListBoxItem(header.Id)
-                {
-                    Description = header.Value
-                }))
-                {
-                    chCmbHeader.Properties.Items.Add(item);
-                }
-                chCmbHeader.Properties.DropDownRows = Dictionares.Headers.Count;
-                chCmbHeader.Properties.PopupFormMinSize = new Size(10, 10);
-                chCmbHeader.Properties.PopupWidthMode = PopupWidthMode.ContentWidth;
-                chCmbHeader.Properties.EditValueType = EditValueTypeCollection.CSV;
-                chCmbHeader.DataBindings.Add("EditValue", _bindingSourceMain, "header2");
-                var id = (int)gViewMain.GetFocusedRowCellValue("reportdefinitionid");
-                Select_Detail(id, State.View);
-                timer1.Interval = 1000;
-                Timer_Start();
-            }
+            chCmbHeader.Properties.EditValueType = EditValueTypeCollection.CSV;
+            chCmbHeader.DataBindings.Add(new Binding("EditValue", _bindingSourceMain, "header2"));
+            chCmbHeader.Properties.DataSource = Dictionares.Headers;
+            chCmbHeader.Properties.ValueMember = "Value";
+            chCmbHeader.Properties.DisplayMember = "Description";
+            chCmbHeader.Properties.DropDownRows = Dictionares.Headers.Count;
+            chCmbHeader.Properties.PopupFormMinSize = new Size(10, 10);
+            chCmbHeader.Properties.PopupWidthMode = PopupWidthMode.ContentWidth;
+            
+            
+            chCmbHeader.SetEditValue(((ReportDefinition)_bindingSourceMain.Current).header2);
+            var id = (int)gViewMain.GetFocusedRowCellValue("reportdefinitionid");
+            Select_Detail(id, State.View);
+            timer1.Interval = 1000;
+            Timer_Start();
         }
         private async void FrmMain_Load(object sender, EventArgs e)
         {
@@ -151,7 +146,7 @@ namespace Reports
             _cycleSet = (int)Settings.Default["Period"];
             barSpinCycle.EditValue = _cycleSet;
 
-            BindingData();
+            DataBinding();
 
             gridConrolMain.ForceInitialize();
 
@@ -233,7 +228,7 @@ namespace Reports
                 StateSwitch();
             }
             GetTimeFormat(report);
-
+            
         }
         private void GetTimeFormat(ReportDefinition report)
         {
@@ -307,7 +302,7 @@ namespace Reports
                 return;
             }
 
-            BindingData(true);
+            DataBinding(true);
             GetTimeFormat(report);
             Select_Detail(report.reportdefinitionid, State.View);
         }
@@ -627,7 +622,7 @@ namespace Reports
                 item.reportdefinitionid = newReport.reportdefinitionid;
                 await HistPoint.Insert(DataConnection(), item);
             }
-            BindingData(true);
+            DataBinding(true);
 
         }
 
