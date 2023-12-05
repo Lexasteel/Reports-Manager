@@ -994,6 +994,8 @@
             this.gridControlDetail.TabIndex = 39;
             this.gridControlDetail.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gViewDetail});
+            this.gridControlDetail.DragDrop += new System.Windows.Forms.DragEventHandler(this.gridControlDetail_DragDrop);
+            this.gridControlDetail.DragEnter += new System.Windows.Forms.DragEventHandler(this.gridControlDetail_DragEnter);
             // 
             // gViewDetail
             // 

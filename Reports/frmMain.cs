@@ -119,8 +119,8 @@ namespace Reports
             chCmbHeader.Properties.DropDownRows = Dictionares.Headers.Count;
             chCmbHeader.Properties.PopupFormMinSize = new Size(10, 10);
             chCmbHeader.Properties.PopupWidthMode = PopupWidthMode.ContentWidth;
-            
-            
+
+
             chCmbHeader.SetEditValue(((ReportDefinition)_bindingSourceMain.Current).header2);
             var id = (int)gViewMain.GetFocusedRowCellValue("reportdefinitionid");
             Select_Detail(id, State.View);
@@ -228,7 +228,7 @@ namespace Reports
                 StateSwitch();
             }
             GetTimeFormat(report);
-            
+
         }
         private void GetTimeFormat(ReportDefinition report)
         {
@@ -1112,6 +1112,21 @@ namespace Reports
             var user = (string)Settings.Default["User"];
             var pass = (string)Settings.Default["Password"];
             return ConnectDb.GetConnection(host, port, database, user, pass);
+        }
+
+        private void gridControlDetail_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.StringFormat))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+        }
+
+        private void gridControlDetail_DragDrop(object sender, DragEventArgs e)
+        {
+            var point = e.Data.GetData(DataFormats.StringFormat);
+            BtnAddPoint_Click(sender, EventArgs.Empty);
+            gViewDetail.SetRowCellValue(GridControl.NewItemRowHandle, gViewDetail.Columns["pointname"], point);
         }
     }
 }
