@@ -384,11 +384,14 @@ namespace Reports
                     if (p.reportdefinitionid == 0)
                     {
                         p.reportdefinitionid = report.reportdefinitionid;
-                        var i = await HistPoint.Insert(DataConnection(), p);
-
+                        await HistPoint.Insert(DataConnection(), p);
                     }
-                    await HistPoint.Update(DataConnection(), p);
+                    else
+                    {
+                        await HistPoint.Update(DataConnection(), p);
+                    }
                 }
+                changes.Clear();
             }
 
             if (!report.Equals(await ReportDefinition.GetById(DataConnection(), report.reportdefinitionid)))
@@ -610,16 +613,14 @@ namespace Reports
         private async void OnCopyRowClick(object sender, EventArgs e)
         {
             var report = (ReportDefinition)_bindingSourceMain.Current;
-
+            report.reportname += " - Копия";
             var id = await ReportDefinition.Insert(DataConnection(), report);
-            var newReport = await ReportDefinition.GetById(DataConnection(), id);
-            newReport.reportname += " - Копия";
-            await ReportDefinition.Update(DataConnection(), newReport);
-
             var points = _bindingSourceDetail.List;
             foreach (HistPoint item in points)
             {
-                item.reportdefinitionid = newReport.reportdefinitionid;
+                var item1 = new HistPoint();
+                item.reportdefinitionid = id;
+
                 await HistPoint.Insert(DataConnection(), item);
             }
             DataBinding(true);
@@ -1116,7 +1117,7 @@ namespace Reports
 
         private void gridControlDetail_DragEnter(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.StringFormat))
+            if (e.Data.GetDataPresent(DataFormats.StringFormat) && gViewDetail.OptionsBehavior.Editable)
             {
                 e.Effect = DragDropEffects.Copy;
             }
@@ -1124,7 +1125,8 @@ namespace Reports
 
         private void gridControlDetail_DragDrop(object sender, DragEventArgs e)
         {
-            var point = e.Data.GetData(DataFormats.StringFormat);
+            if (!gViewDetail.OptionsBehavior.Editable) return;
+            var point = e.Data.GetData(DataFormats.Text).ToString();
             BtnAddPoint_Click(sender, EventArgs.Empty);
             gViewDetail.SetRowCellValue(GridControl.NewItemRowHandle, gViewDetail.Columns["pointname"], point);
         }

@@ -49,7 +49,7 @@ namespace AdapterOPH
 
             if (Report.HistPoints != null)
             {
-                var units= Report.HistPoints.GroupBy(g => g.pointname.Split('.'));
+                var units= Report.HistPoints.Where(w=>w.pointname.Contains(".")).GroupBy(g => g.pointname.Split('.'));
             
                 foreach (var unit in units)
                 {
@@ -92,13 +92,13 @@ namespace AdapterOPH
                             HistPoint h = unit.Skip(sk).Take(p - sk).ToList()[i];
                             h.Handle = items[i];
                             h.Type = collection.Item(i).DataType;
-                            h.ScanMsec = collection.Item(i).scanMsecs;
+                            //h.ScanMsec = collection.Item(i).scanMsecs;
 
                             if (h.Handle > 0)
                             {
                                 PointAttribute pointAttribute = listattr.FirstOrDefault(f => f.hPoint == h.Handle);
                                 h.description = pointAttribute.lpszDesc;
-                                h.Units = pointAttribute.lpszEngUnits;
+                               // h.Units = pointAttribute.lpszEngUnits;
                             }
                             else
                             {

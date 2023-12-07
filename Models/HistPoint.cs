@@ -12,26 +12,24 @@ namespace Models
         [Key]
         public int histpointid { get; set; }
         public int pointposn { get; set; }
-        public string pointname { get; set; } = string.Empty;
+        public string pointname { get; set; } 
         public int bitnumber { get; set; }
         public int proctype { get; set; }
         public string integconst { get; set; } = "1.0";
-        public int glitchdetect { get; set; }
-        public int summaryenable { get; set; }
+       // public int glitchdetect { get; set; }
+        //public int summaryenable { get; set; }
         public int reportdefinitionid { get; set; }
 
-        public string description { get; set; } = string.Empty;
-        public string format { get; set; } = string.Empty;
-        [Write(false)]
-        public ReportDefinition ReportDefinition { get; set; }
+        public string description { get; set; }
+        public string format { get; set; } = "0.0";
         [Write(false)]
         public string Type { get; set; }
-        [Write(false)]
-        public string Units { get; set; } = string.Empty;
-        [Write(false)]
-        public int ScanMsec { get; set; }
-        [Write(false)]
-        public int SignificantDigits { get; set; }
+        //[Write(false)]
+        //public string Units { get; set; } = string.Empty;
+        //[Write(false)]
+        //public int ScanMsec { get; set; }
+        //[Write(false)]
+        //public int SignificantDigits { get; set; }
         [Write(false)]
         public SortedDictionary<DateTime, float> FValues { get; set; } = new SortedDictionary<DateTime, float>();
 
@@ -55,8 +53,6 @@ namespace Models
                             bitnumber = @bitnumber,
                             proctype = @proctype,
                             integconst = @integconst,
-                            glitchdetect = @glitchdetect,
-                            summaryenable = @summaryenable,
                             reportdefinitionid = @reportdefinitionid,
                             format = @format,
                             description = @description 
@@ -71,11 +67,8 @@ namespace Models
         public static async Task<int> Insert(IDbConnection connection, HistPoint point)
         {
 
-            var sql = @"INSERT INTO histpoints (pointposn, pointname, bitnumber, proctype, integconst,
-                            glitchdetect, summaryenable, reportdefinitionid, format,
-                            description) VALUES (@pointposn,
-                            @pointname, @bitnumber, @proctype, @integconst, @glitchdetect, @summaryenable,
-                            @reportdefinitionid, @format, @description) RETURNING histpointid;";
+            var sql = @"INSERT INTO histpoints (pointposn, pointname, bitnumber, proctype, integconst, reportdefinitionid, format, description) VALUES (@pointposn,
+                            @pointname, @bitnumber, @proctype, @integconst, @reportdefinitionid, @format, @description) RETURNING histpointid;";
             //Console.WriteLine(sql);
             var c = await connection.ExecuteScalarAsync<int>(sql, point).ConfigureAwait(false);
             //Console.WriteLine("Insert HistPoint  with Id=" + c);
@@ -104,8 +97,8 @@ namespace Models
                    && this.bitnumber == ((HistPoint)obj).bitnumber
                    && this.proctype == ((HistPoint)obj).proctype
                    && this.integconst == ((HistPoint)obj).integconst
-                   && this.glitchdetect == ((HistPoint)obj).glitchdetect
-                   && this.summaryenable == ((HistPoint)obj).summaryenable
+                  // && this.glitchdetect == ((HistPoint)obj).glitchdetect
+                  // && this.summaryenable == ((HistPoint)obj).summaryenable
                    && this.reportdefinitionid == ((HistPoint)obj).reportdefinitionid
                    && this.description == ((HistPoint)obj).description
                    && this.format == ((HistPoint)obj).format;
@@ -118,14 +111,14 @@ namespace Models
             var bitHashCode = this.bitnumber == null ? 0 : this.bitnumber.GetHashCode();
             var procHashCode = this.proctype == null ? 0 : this.proctype.GetHashCode();
             var integHashCode = this.integconst == null ? 0 : this.integconst.GetHashCode();
-            var glitchHashCode = this.glitchdetect == null ? 0 : this.glitchdetect.GetHashCode();
-            var summarHashCode = this.summaryenable == null ? 0 : this.summaryenable.GetHashCode();
+            //var glitchHashCode = this.glitchdetect == null ? 0 : this.glitchdetect.GetHashCode();
+           // var summarHashCode = this.summaryenable == null ? 0 : this.summaryenable.GetHashCode();
             var repoIdHashCode = this.reportdefinitionid == null ? 0 : this.reportdefinitionid.GetHashCode();
             var descrHashCode = this.description == null ? 0 : this.description.GetHashCode();
             var formatHashCode = this.format == null ? 0 : this.format.GetHashCode();
 
             return idHashCode ^ nameHashCode ^ posnHashCode ^ bitHashCode ^ procHashCode ^ integHashCode 
-                   ^ glitchHashCode ^ summarHashCode ^ repoIdHashCode ^ descrHashCode ^ formatHashCode;
+                   ^ repoIdHashCode ^ descrHashCode ^ formatHashCode;
         }
     }
 
