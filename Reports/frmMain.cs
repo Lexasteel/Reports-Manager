@@ -1,12 +1,10 @@
 ﻿using AdapterOPH;
 using DevExpress.Utils;
-using DevExpress.Utils.Behaviors;
 using DevExpress.Utils.DragDrop;
 using DevExpress.Utils.Menu;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.Repository;
-using DevExpress.XtraExport.Helpers;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
@@ -394,6 +392,7 @@ namespace Reports
                 dialogResult = MessageBox.Show("Save changes?", "Report Manager", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
             }
 
+            if (dialogResult == DialogResult.Cancel) return;
             StateSwitch();
             if (dialogResult == DialogResult.Yes)
             {

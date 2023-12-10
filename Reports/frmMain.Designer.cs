@@ -1001,6 +1001,7 @@
             this.gridControlDetail.Location = new System.Drawing.Point(7, 215);
             this.gridControlDetail.MainView = this.gViewDetail;
             this.gridControlDetail.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.gridControlDetail.MinimumSize = new System.Drawing.Size(0, 278);
             this.gridControlDetail.Name = "gridControlDetail";
             this.gridControlDetail.Size = new System.Drawing.Size(421, 278);
             this.gridControlDetail.TabIndex = 39;
