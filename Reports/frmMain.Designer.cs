@@ -41,6 +41,7 @@
             this.btnRemovePoint = new DevExpress.XtraEditors.SimpleButton();
             this.btnAddPoint = new DevExpress.XtraEditors.SimpleButton();
             this.grpGeneral = new DevExpress.XtraEditors.GroupControl();
+            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.cmbUnit = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
@@ -100,6 +101,8 @@
             this.lblTotalPoints = new DevExpress.XtraEditors.LabelControl();
             this.gridControlDetail = new DevExpress.XtraGrid.GridControl();
             this.gViewDetail = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
+            this.dragDropEvents1 = new DevExpress.Utils.DragDrop.DragDropEvents(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).BeginInit();
             this.splitContainerControl1.Panel1.SuspendLayout();
@@ -140,6 +143,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtReportName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gViewDetail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainerControl1
@@ -272,6 +276,7 @@
             // 
             this.grpGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpGeneral.Controls.Add(this.labelControl9);
             this.grpGeneral.Controls.Add(this.labelControl8);
             this.grpGeneral.Controls.Add(this.cmbUnit);
             this.grpGeneral.Controls.Add(this.grpPeriod);
@@ -299,6 +304,13 @@
             this.grpGeneral.Size = new System.Drawing.Size(465, 206);
             this.grpGeneral.TabIndex = 1;
             this.grpGeneral.Text = "Общие";
+            // 
+            // labelControl9
+            // 
+            this.labelControl9.Location = new System.Drawing.Point(382, 191);
+            this.labelControl9.Name = "labelControl9";
+            this.labelControl9.Size = new System.Drawing.Size(0, 13);
+            this.labelControl9.TabIndex = 62;
             // 
             // labelControl8
             // 
@@ -999,6 +1011,8 @@
             // 
             // gViewDetail
             // 
+            this.behaviorManager1.SetBehaviors(this.gViewDetail, new DevExpress.Utils.Behaviors.Behavior[] {
+            ((DevExpress.Utils.Behaviors.Behavior)(DevExpress.Utils.DragDrop.DragDropBehavior.Create(typeof(DevExpress.XtraGrid.Extensions.ColumnViewDragDropSource), true, true, true, true, this.dragDropEvents1)))});
             this.gViewDetail.DetailHeight = 548;
             this.gViewDetail.GridControl = this.gridControlDetail;
             this.gViewDetail.Name = "gViewDetail";
@@ -1061,6 +1075,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtReportName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gViewDetail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1137,5 +1152,8 @@
         private DevExpress.XtraBars.BarEditItem barEditItem1;
         private DevExpress.XtraEditors.Repository.RepositoryItemProgressBar repositoryItemProgressBar2;
         private DevExpress.XtraBars.BarButtonItem barButtonSetting;
+        private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
+        private DevExpress.Utils.DragDrop.DragDropEvents dragDropEvents1;
+        private DevExpress.XtraEditors.LabelControl labelControl9;
     }
 }

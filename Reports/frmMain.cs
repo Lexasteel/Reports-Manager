@@ -1,11 +1,15 @@
 ﻿using AdapterOPH;
 using DevExpress.Utils;
+using DevExpress.Utils.Behaviors;
+using DevExpress.Utils.DragDrop;
 using DevExpress.Utils.Menu;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraExport.Helpers;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using Models;
 using NLog;
 
@@ -29,6 +33,7 @@ namespace Reports
         public FrmMain()
         {
             InitializeComponent();
+            HandleBehaviorDragDropEvents();
             this.Load += FrmMain_Load;
             this.FormClosing += FrmMain_FormClosing;
 
@@ -64,6 +69,100 @@ namespace Reports
             btnSave.Click += BtnSave_Click;
             btnCancel.Click += BtnCancel_Click;
 
+
+
+        }
+
+        public void HandleBehaviorDragDropEvents()
+        {
+            DragDropBehavior gridControlBehavior = behaviorManager1.GetBehavior<DragDropBehavior>(gViewDetail);
+            gridControlBehavior.DragDrop += Behavior_DragDrop; ;
+            gridControlBehavior.DragOver += Behavior_DragOver;
+        }
+
+
+        private void Behavior_DragOver(object sender, DragOverEventArgs e)
+        {
+            e.Default();
+            DragOverGridEventArgs args = DragOverGridEventArgs.GetDragOverGridEventArgs(e);
+            e.InsertType = args.InsertType;
+            e.InsertIndicatorLocation = args.InsertIndicatorLocation;
+            e.Action = args.Action;
+            Cursor.Current = args.Cursor;
+            args.Handled = true;
+        }
+
+        private void Behavior_DragDrop(object sender, DragDropEventArgs e)
+        {
+            GridView targetGrid = e.Target as GridView;
+            GridView sourceGrid = e.Source as GridView;
+            if (e.Action == DragDropActions.None || targetGrid != sourceGrid)
+                return;
+            var sourceTable = ((BindingSource)sourceGrid.GridControl.DataSource).List;
+
+            Point hitPoint = targetGrid.GridControl.PointToClient(Cursor.Position);
+            GridHitInfo hitInfo = targetGrid.CalcHitInfo(hitPoint);
+
+            int[] sourceHandles = e.GetData<int[]>();
+
+            int targetRowHandle = hitInfo.RowHandle;
+            int targetRowIndex = targetGrid.GetDataSourceRowIndex(targetRowHandle);
+
+            List<HistPoint> draggedRows = new List<HistPoint>();
+            foreach (int sourceHandle in sourceHandles)
+            {
+                int oldRowIndex = sourceGrid.GetDataSourceRowIndex(sourceHandle);
+                var oldRow = (HistPoint)sourceTable[oldRowIndex];
+                draggedRows.Add(oldRow);
+            }
+
+            int newRowIndex;
+           
+            switch (e.InsertType)
+            {
+                case InsertType.Before:
+                    labelControl9.Text = "before "+DateTime.Now.Second;
+                    newRowIndex = targetRowIndex > sourceHandles[sourceHandles.Length - 1] ? targetRowIndex - 1 : targetRowIndex;
+                    for (int i = draggedRows.Count - 1; i >= 0; i--)
+                    {
+                        var oldRow = draggedRows[i];
+                      
+                        sourceTable.Remove(oldRow);
+                        sourceTable.Insert(newRowIndex, oldRow);
+                        var oldPointPosn = oldRow.pointposn;
+                        for (int j = newRowIndex; j < oldPointPosn; j++)
+                        {
+                            ((HistPoint)sourceTable[j]).pointposn = j+1;
+                        }
+                      
+                    }
+                    break;
+                case InsertType.After:
+                    labelControl9.Text = "after " + DateTime.Now.Second;
+                    newRowIndex = targetRowIndex < sourceHandles[0] ? targetRowIndex + 1 : targetRowIndex;
+                    for (int i = 0; i < draggedRows.Count; i++)
+                    {
+                        var oldRow = draggedRows[i];
+
+                        sourceTable.Remove(oldRow);
+                        sourceTable.Insert(newRowIndex, oldRow);
+                        var oldPointPosn = oldRow.pointposn;
+                        for (int j = oldPointPosn; j <= newRowIndex+1; j++)
+                        {
+                            ((HistPoint)sourceTable[j-1]).pointposn = j;
+                        }
+                      
+                    }
+                    break;
+                default:
+                    labelControl9.Text = "default " + DateTime.Now.Second;
+                    newRowIndex = -1;
+                    break;
+            }
+            _bindingSourceDetail.ResetBindings(false);
+            int insertedIndex = targetGrid.GetRowHandle(newRowIndex);
+            targetGrid.FocusedRowHandle = insertedIndex;
+            targetGrid.SelectRow(targetGrid.FocusedRowHandle);
         }
 
         private void BarButtonSetting_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -1017,8 +1116,8 @@ namespace Reports
             colPoinPosn.OptionsEditForm.Visible = DevExpress.Utils.DefaultBoolean.False;
 
             gViewDetail.Columns.Add(colPoinPosn);
-            gViewDetail.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
-             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(colPoinPosn, DevExpress.Data.ColumnSortOrder.Ascending)});
+            //gViewDetail.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            // new DevExpress.XtraGrid.Columns.GridColumnSortInfo(colPoinPosn, DevExpress.Data.ColumnSortOrder.Ascending)});
 
 
             gViewDetail.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn()
