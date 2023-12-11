@@ -251,10 +251,10 @@ namespace Reports
             barStaticTime.Caption = "";
 
             gViewMain.PopupMenuShowing += gridViewMain_PopupMenuShowing;
-            splitContainerControl1.FixedPanel = SplitFixedPanel.Panel2;
+            //splitContainerControl1.FixedPanel = SplitFixedPanel.Panel2;
 
-            splitContainerControl1.Panel2.MinSize = Panel2Width;
-            splitContainerControl1.Panel2.Size = new Size(Panel2Width, splitContainerControl1.Panel2.Size.Height);
+            //splitContainerControl1.Panel2.MinSize = Panel2Width;
+            //splitContainerControl1.Panel2.Size = new Size(Panel2Width, splitContainerControl1.Panel2.Size.Height);
             barButtonTimerStart.Enabled = false;
             barProgress.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
 
@@ -1049,7 +1049,7 @@ namespace Reports
                 FieldName = "reporttypeid",
                 Caption = "Вид отчета",
                 Visible = true,
-                Width = 40,
+                Width = 80,
                 ColumnEdit = new RepositoryItemLookUpEdit()
                 {
                     DataSource = Dictionares.ReportType,
@@ -1063,8 +1063,9 @@ namespace Reports
             {
                 Name = "NextEvent",
                 FieldName = "nextevent",
-                Caption = "Следущая дата",
+                Caption = "След. дата",
                 Visible = true,
+                Width = 50,
             });
 
             gViewMain.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn()

@@ -149,8 +149,8 @@
             // splitContainerControl1
             // 
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerControl1.Location = new System.Drawing.Point(0, 28);
-            this.splitContainerControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.splitContainerControl1.Location = new System.Drawing.Point(0, 34);
+            this.splitContainerControl1.Margin = new System.Windows.Forms.Padding(5);
             this.splitContainerControl1.Name = "splitContainerControl1";
             // 
             // splitContainerControl1.Panel1
@@ -174,26 +174,26 @@
             this.splitContainerControl1.Panel2.Controls.Add(this.lblTotalPoints);
             this.splitContainerControl1.Panel2.Controls.Add(this.gridControlDetail);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(893, 533);
-            this.splitContainerControl1.SplitterPosition = 403;
+            this.splitContainerControl1.Size = new System.Drawing.Size(1398, 656);
+            this.splitContainerControl1.SplitterPosition = 722;
             this.splitContainerControl1.TabIndex = 1;
             // 
             // gridConrolMain
             // 
             this.gridConrolMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridConrolMain.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6);
+            this.gridConrolMain.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(7);
             this.gridConrolMain.Location = new System.Drawing.Point(0, 0);
             this.gridConrolMain.MainView = this.gViewMain;
-            this.gridConrolMain.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.gridConrolMain.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.gridConrolMain.Name = "gridConrolMain";
-            this.gridConrolMain.Size = new System.Drawing.Size(403, 533);
+            this.gridConrolMain.Size = new System.Drawing.Size(722, 656);
             this.gridConrolMain.TabIndex = 1;
             this.gridConrolMain.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gViewMain});
             // 
             // gViewMain
             // 
-            this.gViewMain.DetailHeight = 548;
+            this.gViewMain.DetailHeight = 674;
             this.gViewMain.GridControl = this.gridConrolMain;
             this.gViewMain.Name = "gViewMain";
             this.gViewMain.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.EditFormInplace;
@@ -205,10 +205,10 @@
             this.btnImportPoints.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnImportPoints.Enabled = false;
             this.btnImportPoints.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnImportPoints.ImageOptions.SvgImage")));
-            this.btnImportPoints.Location = new System.Drawing.Point(436, 430);
+            this.btnImportPoints.Location = new System.Drawing.Point(609, 529);
             this.btnImportPoints.Margin = new System.Windows.Forms.Padding(2);
             this.btnImportPoints.Name = "btnImportPoints";
-            this.btnImportPoints.Size = new System.Drawing.Size(36, 36);
+            this.btnImportPoints.Size = new System.Drawing.Size(42, 44);
             this.btnImportPoints.TabIndex = 67;
             this.btnImportPoints.ToolTip = "Import points";
             // 
@@ -217,10 +217,10 @@
             this.btnExportPoints.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExportPoints.Enabled = false;
             this.btnExportPoints.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnExportPoints.ImageOptions.SvgImage")));
-            this.btnExportPoints.Location = new System.Drawing.Point(436, 387);
+            this.btnExportPoints.Location = new System.Drawing.Point(609, 476);
             this.btnExportPoints.Margin = new System.Windows.Forms.Padding(2);
             this.btnExportPoints.Name = "btnExportPoints";
-            this.btnExportPoints.Size = new System.Drawing.Size(36, 36);
+            this.btnExportPoints.Size = new System.Drawing.Size(42, 44);
             this.btnExportPoints.TabIndex = 66;
             this.btnExportPoints.ToolTip = "Export points";
             // 
@@ -229,10 +229,10 @@
             this.btnDownPoint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDownPoint.Enabled = false;
             this.btnDownPoint.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDownPoint.ImageOptions.SvgImage")));
-            this.btnDownPoint.Location = new System.Drawing.Point(436, 301);
+            this.btnDownPoint.Location = new System.Drawing.Point(609, 370);
             this.btnDownPoint.Margin = new System.Windows.Forms.Padding(2);
             this.btnDownPoint.Name = "btnDownPoint";
-            this.btnDownPoint.Size = new System.Drawing.Size(36, 36);
+            this.btnDownPoint.Size = new System.Drawing.Size(42, 44);
             this.btnDownPoint.TabIndex = 65;
             this.btnDownPoint.ToolTip = "Move down point";
             // 
@@ -241,10 +241,10 @@
             this.btnUpPoint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUpPoint.Enabled = false;
             this.btnUpPoint.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnUpPoint.ImageOptions.SvgImage")));
-            this.btnUpPoint.Location = new System.Drawing.Point(436, 258);
+            this.btnUpPoint.Location = new System.Drawing.Point(609, 318);
             this.btnUpPoint.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpPoint.Name = "btnUpPoint";
-            this.btnUpPoint.Size = new System.Drawing.Size(36, 36);
+            this.btnUpPoint.Size = new System.Drawing.Size(42, 44);
             this.btnUpPoint.TabIndex = 64;
             this.btnUpPoint.ToolTip = "Move up point";
             // 
@@ -253,10 +253,10 @@
             this.btnRemovePoint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemovePoint.Enabled = false;
             this.btnRemovePoint.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnRemovePoint.ImageOptions.SvgImage")));
-            this.btnRemovePoint.Location = new System.Drawing.Point(436, 344);
+            this.btnRemovePoint.Location = new System.Drawing.Point(609, 423);
             this.btnRemovePoint.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemovePoint.Name = "btnRemovePoint";
-            this.btnRemovePoint.Size = new System.Drawing.Size(36, 36);
+            this.btnRemovePoint.Size = new System.Drawing.Size(42, 44);
             this.btnRemovePoint.TabIndex = 63;
             this.btnRemovePoint.ToolTip = "Remove point";
             // 
@@ -265,10 +265,10 @@
             this.btnAddPoint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddPoint.Enabled = false;
             this.btnAddPoint.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnAddPoint.ImageOptions.SvgImage")));
-            this.btnAddPoint.Location = new System.Drawing.Point(436, 215);
+            this.btnAddPoint.Location = new System.Drawing.Point(609, 265);
             this.btnAddPoint.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddPoint.Name = "btnAddPoint";
-            this.btnAddPoint.Size = new System.Drawing.Size(36, 36);
+            this.btnAddPoint.Size = new System.Drawing.Size(42, 44);
             this.btnAddPoint.TabIndex = 62;
             this.btnAddPoint.ToolTip = "Add point";
             // 
@@ -298,37 +298,39 @@
             this.grpGeneral.Controls.Add(this.labelControl1);
             this.grpGeneral.Controls.Add(this.txtReportName);
             this.grpGeneral.Enabled = false;
-            this.grpGeneral.Location = new System.Drawing.Point(7, 0);
-            this.grpGeneral.Margin = new System.Windows.Forms.Padding(4);
+            this.grpGeneral.Location = new System.Drawing.Point(8, 0);
+            this.grpGeneral.Margin = new System.Windows.Forms.Padding(5);
             this.grpGeneral.Name = "grpGeneral";
-            this.grpGeneral.Size = new System.Drawing.Size(465, 206);
+            this.grpGeneral.Size = new System.Drawing.Size(650, 254);
             this.grpGeneral.TabIndex = 1;
             this.grpGeneral.Text = "Общие";
             // 
             // labelControl9
             // 
-            this.labelControl9.Location = new System.Drawing.Point(382, 191);
+            this.labelControl9.Location = new System.Drawing.Point(446, 235);
+            this.labelControl9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(0, 13);
+            this.labelControl9.Size = new System.Drawing.Size(0, 16);
             this.labelControl9.TabIndex = 62;
             // 
             // labelControl8
             // 
-            this.labelControl8.Location = new System.Drawing.Point(7, 24);
-            this.labelControl8.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl8.Location = new System.Drawing.Point(8, 30);
+            this.labelControl8.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(28, 13);
+            this.labelControl8.Size = new System.Drawing.Size(33, 16);
             this.labelControl8.TabIndex = 61;
             this.labelControl8.Text = "Блок:";
             // 
             // cmbUnit
             // 
-            this.cmbUnit.Location = new System.Drawing.Point(82, 21);
+            this.cmbUnit.Location = new System.Drawing.Point(96, 26);
+            this.cmbUnit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmbUnit.MenuManager = this.barManager1;
             this.cmbUnit.Name = "cmbUnit";
             this.cmbUnit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbUnit.Size = new System.Drawing.Size(56, 20);
+            this.cmbUnit.Size = new System.Drawing.Size(65, 22);
             this.cmbUnit.TabIndex = 60;
             // 
             // barManager1
@@ -507,31 +509,35 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(893, 28);
+            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlTop.Size = new System.Drawing.Size(1398, 34);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 561);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 690);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(893, 20);
+            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1398, 25);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 28);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 34);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 533);
+            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 656);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(893, 28);
+            this.barDockControlRight.Location = new System.Drawing.Point(1398, 34);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 533);
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 656);
             // 
             // barEditItem1
             // 
@@ -551,10 +557,10 @@
             this.grpPeriod.Controls.Add(this.spinTimeHours);
             this.grpPeriod.Controls.Add(this.lookUpTimeFormat);
             this.grpPeriod.Enabled = false;
-            this.grpPeriod.Location = new System.Drawing.Point(10, 132);
-            this.grpPeriod.Margin = new System.Windows.Forms.Padding(4);
+            this.grpPeriod.Location = new System.Drawing.Point(12, 162);
+            this.grpPeriod.Margin = new System.Windows.Forms.Padding(5);
             this.grpPeriod.Name = "grpPeriod";
-            this.grpPeriod.Size = new System.Drawing.Size(148, 68);
+            this.grpPeriod.Size = new System.Drawing.Size(173, 84);
             this.grpPeriod.TabIndex = 2;
             this.grpPeriod.Text = "Период:";
             // 
@@ -565,8 +571,8 @@
             0,
             0,
             0});
-            this.spinTimeSecs.Location = new System.Drawing.Point(99, 45);
-            this.spinTimeSecs.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.spinTimeSecs.Location = new System.Drawing.Point(115, 55);
+            this.spinTimeSecs.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.spinTimeSecs.Name = "spinTimeSecs";
             this.spinTimeSecs.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -578,7 +584,7 @@
             0,
             0});
             this.spinTimeSecs.Properties.UseMaskAsDisplayFormat = true;
-            this.spinTimeSecs.Size = new System.Drawing.Size(38, 20);
+            this.spinTimeSecs.Size = new System.Drawing.Size(44, 22);
             this.spinTimeSecs.TabIndex = 54;
             // 
             // spinTimeMinutes
@@ -588,8 +594,8 @@
             0,
             0,
             0});
-            this.spinTimeMinutes.Location = new System.Drawing.Point(53, 45);
-            this.spinTimeMinutes.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.spinTimeMinutes.Location = new System.Drawing.Point(62, 55);
+            this.spinTimeMinutes.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.spinTimeMinutes.Name = "spinTimeMinutes";
             this.spinTimeMinutes.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -601,7 +607,7 @@
             0,
             0});
             this.spinTimeMinutes.Properties.UseMaskAsDisplayFormat = true;
-            this.spinTimeMinutes.Size = new System.Drawing.Size(38, 20);
+            this.spinTimeMinutes.Size = new System.Drawing.Size(44, 22);
             this.spinTimeMinutes.TabIndex = 53;
             // 
             // spinTimeHours
@@ -611,8 +617,8 @@
             0,
             0,
             0});
-            this.spinTimeHours.Location = new System.Drawing.Point(8, 45);
-            this.spinTimeHours.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.spinTimeHours.Location = new System.Drawing.Point(9, 55);
+            this.spinTimeHours.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.spinTimeHours.Name = "spinTimeHours";
             this.spinTimeHours.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -624,13 +630,13 @@
             0,
             0});
             this.spinTimeHours.Properties.UseMaskAsDisplayFormat = true;
-            this.spinTimeHours.Size = new System.Drawing.Size(38, 20);
+            this.spinTimeHours.Size = new System.Drawing.Size(44, 22);
             this.spinTimeHours.TabIndex = 52;
             // 
             // lookUpTimeFormat
             // 
-            this.lookUpTimeFormat.Location = new System.Drawing.Point(8, 22);
-            this.lookUpTimeFormat.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.lookUpTimeFormat.Location = new System.Drawing.Point(9, 27);
+            this.lookUpTimeFormat.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.lookUpTimeFormat.Name = "lookUpTimeFormat";
             this.lookUpTimeFormat.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -638,17 +644,17 @@
             this.lookUpTimeFormat.Properties.PopupWidthMode = DevExpress.XtraEditors.PopupWidthMode.ContentWidth;
             this.lookUpTimeFormat.Properties.ShowFooter = false;
             this.lookUpTimeFormat.Properties.ShowHeader = false;
-            this.lookUpTimeFormat.Size = new System.Drawing.Size(129, 20);
+            this.lookUpTimeFormat.Size = new System.Drawing.Size(150, 22);
             this.lookUpTimeFormat.TabIndex = 22;
             // 
             // chkEnable
             // 
-            this.chkEnable.Location = new System.Drawing.Point(382, 146);
-            this.chkEnable.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.chkEnable.Location = new System.Drawing.Point(446, 180);
+            this.chkEnable.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.chkEnable.Name = "chkEnable";
             this.chkEnable.Properties.AutoWidth = true;
             this.chkEnable.Properties.Caption = "Авто";
-            this.chkEnable.Size = new System.Drawing.Size(47, 19);
+            this.chkEnable.Size = new System.Drawing.Size(51, 20);
             this.chkEnable.TabIndex = 31;
             // 
             // grpInterval
@@ -659,18 +665,18 @@
             this.grpInterval.Controls.Add(this.spinSampleHours);
             this.grpInterval.Controls.Add(this.lookUpSample);
             this.grpInterval.Enabled = false;
-            this.grpInterval.Location = new System.Drawing.Point(166, 132);
-            this.grpInterval.Margin = new System.Windows.Forms.Padding(4);
+            this.grpInterval.Location = new System.Drawing.Point(194, 162);
+            this.grpInterval.Margin = new System.Windows.Forms.Padding(5);
             this.grpInterval.Name = "grpInterval";
-            this.grpInterval.Size = new System.Drawing.Size(207, 68);
+            this.grpInterval.Size = new System.Drawing.Size(241, 84);
             this.grpInterval.TabIndex = 3;
             this.grpInterval.Text = "Интервал";
             // 
             // cmbFractionOfSec
             // 
-            this.cmbFractionOfSec.Location = new System.Drawing.Point(145, 45);
-            this.cmbFractionOfSec.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.cmbFractionOfSec.MinimumSize = new System.Drawing.Size(32, 0);
+            this.cmbFractionOfSec.Location = new System.Drawing.Point(169, 55);
+            this.cmbFractionOfSec.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.cmbFractionOfSec.MinimumSize = new System.Drawing.Size(37, 0);
             this.cmbFractionOfSec.Name = "cmbFractionOfSec";
             this.cmbFractionOfSec.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -685,8 +691,8 @@
             "0.7",
             "0.8",
             "0.9"});
-            this.cmbFractionOfSec.Properties.PopupFormSize = new System.Drawing.Size(80, 0);
-            this.cmbFractionOfSec.Size = new System.Drawing.Size(50, 20);
+            this.cmbFractionOfSec.Properties.PopupFormSize = new System.Drawing.Size(93, 0);
+            this.cmbFractionOfSec.Size = new System.Drawing.Size(58, 22);
             this.cmbFractionOfSec.TabIndex = 51;
             // 
             // spinSampleSecs
@@ -696,8 +702,8 @@
             0,
             0,
             0});
-            this.spinSampleSecs.Location = new System.Drawing.Point(99, 45);
-            this.spinSampleSecs.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.spinSampleSecs.Location = new System.Drawing.Point(115, 55);
+            this.spinSampleSecs.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.spinSampleSecs.Name = "spinSampleSecs";
             this.spinSampleSecs.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -709,7 +715,7 @@
             0,
             0,
             0});
-            this.spinSampleSecs.Size = new System.Drawing.Size(38, 20);
+            this.spinSampleSecs.Size = new System.Drawing.Size(44, 22);
             this.spinSampleSecs.TabIndex = 50;
             // 
             // spinSampleMins
@@ -719,8 +725,8 @@
             0,
             0,
             0});
-            this.spinSampleMins.Location = new System.Drawing.Point(53, 45);
-            this.spinSampleMins.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.spinSampleMins.Location = new System.Drawing.Point(62, 55);
+            this.spinSampleMins.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.spinSampleMins.Name = "spinSampleMins";
             this.spinSampleMins.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -732,7 +738,7 @@
             0,
             0,
             0});
-            this.spinSampleMins.Size = new System.Drawing.Size(38, 20);
+            this.spinSampleMins.Size = new System.Drawing.Size(44, 22);
             this.spinSampleMins.TabIndex = 49;
             // 
             // spinSampleHours
@@ -742,8 +748,8 @@
             0,
             0,
             0});
-            this.spinSampleHours.Location = new System.Drawing.Point(8, 45);
-            this.spinSampleHours.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.spinSampleHours.Location = new System.Drawing.Point(9, 55);
+            this.spinSampleHours.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.spinSampleHours.Name = "spinSampleHours";
             this.spinSampleHours.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -755,39 +761,39 @@
             0,
             0,
             0});
-            this.spinSampleHours.Size = new System.Drawing.Size(38, 20);
+            this.spinSampleHours.Size = new System.Drawing.Size(44, 22);
             this.spinSampleHours.TabIndex = 48;
             // 
             // lookUpSample
             // 
-            this.lookUpSample.Location = new System.Drawing.Point(8, 21);
-            this.lookUpSample.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.lookUpSample.Location = new System.Drawing.Point(9, 26);
+            this.lookUpSample.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.lookUpSample.Name = "lookUpSample";
             this.lookUpSample.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lookUpSample.Properties.NullText = "";
-            this.lookUpSample.Properties.PopupWidth = 31;
+            this.lookUpSample.Properties.PopupWidth = 36;
             this.lookUpSample.Properties.PopupWidthMode = DevExpress.XtraEditors.PopupWidthMode.UseEditorWidth;
             this.lookUpSample.Properties.ShowFooter = false;
             this.lookUpSample.Properties.ShowHeader = false;
-            this.lookUpSample.Size = new System.Drawing.Size(188, 20);
+            this.lookUpSample.Size = new System.Drawing.Size(219, 22);
             this.lookUpSample.TabIndex = 24;
             // 
             // chZip
             // 
-            this.chZip.Location = new System.Drawing.Point(382, 172);
-            this.chZip.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.chZip.Location = new System.Drawing.Point(446, 212);
+            this.chZip.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.chZip.Name = "chZip";
             this.chZip.Properties.Caption = "Архив ZIP";
-            this.chZip.Size = new System.Drawing.Size(71, 19);
+            this.chZip.Size = new System.Drawing.Size(83, 20);
             this.chZip.TabIndex = 57;
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(296, 106);
-            this.labelControl7.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl7.Location = new System.Drawing.Point(345, 130);
+            this.labelControl7.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(35, 13);
+            this.labelControl7.Size = new System.Drawing.Size(39, 16);
             this.labelControl7.TabIndex = 59;
             this.labelControl7.Text = "Сдвиг:";
             // 
@@ -795,36 +801,36 @@
             // 
             this.lkpReportDest.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lkpReportDest.Location = new System.Drawing.Point(355, 80);
-            this.lkpReportDest.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.lkpReportDest.Location = new System.Drawing.Point(414, 98);
+            this.lkpReportDest.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.lkpReportDest.Name = "lkpReportDest";
             this.lkpReportDest.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lkpReportDest.Properties.NullText = "";
-            this.lkpReportDest.Properties.PopupWidth = 79;
+            this.lkpReportDest.Properties.PopupWidth = 92;
             this.lkpReportDest.Properties.PopupWidthMode = DevExpress.XtraEditors.PopupWidthMode.ContentWidth;
             this.lkpReportDest.Properties.ShowFooter = false;
             this.lkpReportDest.Properties.ShowHeader = false;
-            this.lkpReportDest.Size = new System.Drawing.Size(105, 20);
+            this.lkpReportDest.Size = new System.Drawing.Size(230, 22);
             this.lkpReportDest.TabIndex = 19;
             // 
             // labelControl4
             // 
             this.labelControl4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelControl4.Location = new System.Drawing.Point(296, 80);
-            this.labelControl4.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl4.Location = new System.Drawing.Point(345, 98);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(42, 13);
+            this.labelControl4.Size = new System.Drawing.Size(50, 16);
             this.labelControl4.TabIndex = 20;
             this.labelControl4.Text = "Формат:";
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(7, 83);
-            this.labelControl5.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl5.Location = new System.Drawing.Point(8, 102);
+            this.labelControl5.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(57, 13);
+            this.labelControl5.Size = new System.Drawing.Size(65, 16);
             this.labelControl5.TabIndex = 56;
             this.labelControl5.Text = "Заголовки:";
             // 
@@ -833,22 +839,22 @@
             this.tsOffSet.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tsOffSet.EditValue = System.TimeSpan.Parse("00:00:00");
-            this.tsOffSet.Location = new System.Drawing.Point(355, 106);
-            this.tsOffSet.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.tsOffSet.Location = new System.Drawing.Point(414, 130);
+            this.tsOffSet.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.tsOffSet.Name = "tsOffSet";
             this.tsOffSet.Properties.AllowEditDays = false;
             this.tsOffSet.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.tsOffSet.Properties.MaxDays = 0;
             this.tsOffSet.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.SpinButtons;
-            this.tsOffSet.Size = new System.Drawing.Size(105, 20);
+            this.tsOffSet.Size = new System.Drawing.Size(230, 22);
             this.tsOffSet.TabIndex = 33;
             // 
             // chCmbHeader
             // 
             this.chCmbHeader.EditValue = "";
-            this.chCmbHeader.Location = new System.Drawing.Point(82, 80);
-            this.chCmbHeader.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.chCmbHeader.Location = new System.Drawing.Point(96, 98);
+            this.chCmbHeader.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.chCmbHeader.Name = "chCmbHeader";
             this.chCmbHeader.Properties.AllowMultiSelect = true;
             this.chCmbHeader.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -856,23 +862,23 @@
             this.chCmbHeader.Properties.DropDownRows = 3;
             this.chCmbHeader.Properties.SelectAllItemVisible = false;
             this.chCmbHeader.Properties.ShowButtons = false;
-            this.chCmbHeader.Size = new System.Drawing.Size(202, 20);
+            this.chCmbHeader.Size = new System.Drawing.Size(236, 22);
             this.chCmbHeader.TabIndex = 55;
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(7, 110);
-            this.labelControl6.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl6.Location = new System.Drawing.Point(8, 135);
+            this.labelControl6.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(71, 13);
+            this.labelControl6.Size = new System.Drawing.Size(80, 16);
             this.labelControl6.TabIndex = 58;
             this.labelControl6.Text = "След. запуск:";
             // 
             // deNextEvent
             // 
             this.deNextEvent.EditValue = null;
-            this.deNextEvent.Location = new System.Drawing.Point(82, 108);
-            this.deNextEvent.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.deNextEvent.Location = new System.Drawing.Point(96, 133);
+            this.deNextEvent.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.deNextEvent.Name = "deNextEvent";
             this.deNextEvent.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -880,36 +886,36 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.deNextEvent.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.deNextEvent.Properties.MaskSettings.Set("mask", "G");
-            this.deNextEvent.Size = new System.Drawing.Size(202, 20);
+            this.deNextEvent.Size = new System.Drawing.Size(236, 22);
             this.deNextEvent.TabIndex = 37;
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(7, 54);
-            this.labelControl3.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl3.Location = new System.Drawing.Point(8, 66);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(59, 13);
+            this.labelControl3.Size = new System.Drawing.Size(67, 16);
             this.labelControl3.TabIndex = 18;
             this.labelControl3.Text = "Сохранить:";
             // 
             // btnEditDestinationInfo
             // 
-            this.btnEditDestinationInfo.Location = new System.Drawing.Point(82, 51);
-            this.btnEditDestinationInfo.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.btnEditDestinationInfo.Location = new System.Drawing.Point(96, 63);
+            this.btnEditDestinationInfo.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.btnEditDestinationInfo.Name = "btnEditDestinationInfo";
             this.btnEditDestinationInfo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.btnEditDestinationInfo.Size = new System.Drawing.Size(204, 20);
+            this.btnEditDestinationInfo.Size = new System.Drawing.Size(238, 22);
             this.btnEditDestinationInfo.TabIndex = 17;
             // 
             // labelControl2
             // 
             this.labelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelControl2.Location = new System.Drawing.Point(296, 54);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl2.Location = new System.Drawing.Point(345, 66);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(61, 13);
+            this.labelControl2.Size = new System.Drawing.Size(71, 16);
             this.labelControl2.TabIndex = 16;
             this.labelControl2.Text = "Тип отчета:";
             // 
@@ -917,23 +923,23 @@
             // 
             this.lkpReportType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lkpReportType.Location = new System.Drawing.Point(359, 52);
-            this.lkpReportType.Margin = new System.Windows.Forms.Padding(4);
+            this.lkpReportType.Location = new System.Drawing.Point(419, 64);
+            this.lkpReportType.Margin = new System.Windows.Forms.Padding(5);
             this.lkpReportType.Name = "lkpReportType";
             this.lkpReportType.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFit;
             this.lkpReportType.Properties.NullText = "";
             this.lkpReportType.Properties.PopupWidthMode = DevExpress.XtraEditors.PopupWidthMode.ContentWidth;
             this.lkpReportType.Properties.ShowFooter = false;
             this.lkpReportType.Properties.ShowHeader = false;
-            this.lkpReportType.Size = new System.Drawing.Size(101, 20);
+            this.lkpReportType.Size = new System.Drawing.Size(226, 22);
             this.lkpReportType.TabIndex = 15;
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(160, 24);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.labelControl1.Location = new System.Drawing.Point(187, 30);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(5);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(91, 13);
+            this.labelControl1.Size = new System.Drawing.Size(105, 16);
             this.labelControl1.TabIndex = 14;
             this.labelControl1.Text = "Название отчета:";
             // 
@@ -942,10 +948,10 @@
             this.txtReportName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtReportName.EditValue = "";
-            this.txtReportName.Location = new System.Drawing.Point(253, 23);
-            this.txtReportName.Margin = new System.Windows.Forms.Padding(6, 2, 6, 2);
+            this.txtReportName.Location = new System.Drawing.Point(295, 28);
+            this.txtReportName.Margin = new System.Windows.Forms.Padding(7, 2, 7, 2);
             this.txtReportName.Name = "txtReportName";
-            this.txtReportName.Size = new System.Drawing.Size(207, 20);
+            this.txtReportName.Size = new System.Drawing.Size(349, 22);
             this.txtReportName.TabIndex = 13;
             // 
             // btnCancel
@@ -953,9 +959,10 @@
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.Enabled = false;
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
-            this.btnCancel.Location = new System.Drawing.Point(386, 501);
+            this.btnCancel.Location = new System.Drawing.Point(551, 617);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(86, 22);
+            this.btnCancel.Size = new System.Drawing.Size(100, 27);
             this.btnCancel.TabIndex = 57;
             this.btnCancel.Text = "Отмена";
             // 
@@ -964,10 +971,10 @@
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Enabled = false;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
-            this.btnSave.Location = new System.Drawing.Point(290, 501);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.btnSave.Location = new System.Drawing.Point(433, 617);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(87, 22);
+            this.btnSave.Size = new System.Drawing.Size(101, 27);
             this.btnSave.TabIndex = 60;
             this.btnSave.Text = "Сохранить";
             // 
@@ -976,9 +983,10 @@
             this.btnGetDesc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGetDesc.Enabled = false;
             this.btnGetDesc.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGetDesc.ImageOptions.Image")));
-            this.btnGetDesc.Location = new System.Drawing.Point(7, 501);
+            this.btnGetDesc.Location = new System.Drawing.Point(116, 618);
+            this.btnGetDesc.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnGetDesc.Name = "btnGetDesc";
-            this.btnGetDesc.Size = new System.Drawing.Size(158, 22);
+            this.btnGetDesc.Size = new System.Drawing.Size(184, 27);
             this.btnGetDesc.TabIndex = 58;
             this.btnGetDesc.Text = "Получить наименования";
             // 
@@ -986,9 +994,10 @@
             // 
             this.lblTotalPoints.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTotalPoints.Enabled = false;
-            this.lblTotalPoints.Location = new System.Drawing.Point(171, 505);
+            this.lblTotalPoints.Location = new System.Drawing.Point(307, 623);
+            this.lblTotalPoints.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblTotalPoints.Name = "lblTotalPoints";
-            this.lblTotalPoints.Size = new System.Drawing.Size(0, 13);
+            this.lblTotalPoints.Size = new System.Drawing.Size(0, 16);
             this.lblTotalPoints.TabIndex = 74;
             // 
             // gridControlDetail
@@ -997,13 +1006,12 @@
             this.gridControlDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridControlDetail.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6);
-            this.gridControlDetail.Location = new System.Drawing.Point(7, 215);
+            this.gridControlDetail.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(7);
+            this.gridControlDetail.Location = new System.Drawing.Point(8, 265);
             this.gridControlDetail.MainView = this.gViewDetail;
-            this.gridControlDetail.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.gridControlDetail.MinimumSize = new System.Drawing.Size(0, 278);
+            this.gridControlDetail.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.gridControlDetail.Name = "gridControlDetail";
-            this.gridControlDetail.Size = new System.Drawing.Size(421, 278);
+            this.gridControlDetail.Size = new System.Drawing.Size(592, 343);
             this.gridControlDetail.TabIndex = 39;
             this.gridControlDetail.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gViewDetail});
@@ -1014,7 +1022,7 @@
             // 
             this.behaviorManager1.SetBehaviors(this.gViewDetail, new DevExpress.Utils.Behaviors.Behavior[] {
             ((DevExpress.Utils.Behaviors.Behavior)(DevExpress.Utils.DragDrop.DragDropBehavior.Create(typeof(DevExpress.XtraGrid.Extensions.ColumnViewDragDropSource), true, true, true, true, this.dragDropEvents1)))});
-            this.gViewDetail.DetailHeight = 548;
+            this.gViewDetail.DetailHeight = 674;
             this.gViewDetail.GridControl = this.gridControlDetail;
             this.gViewDetail.Name = "gViewDetail";
             this.gViewDetail.OptionsBehavior.Editable = false;
@@ -1022,15 +1030,15 @@
             // 
             // FrmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(893, 581);
+            this.ClientSize = new System.Drawing.Size(1398, 715);
             this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Менеджер отчетов ver. 3.0";
