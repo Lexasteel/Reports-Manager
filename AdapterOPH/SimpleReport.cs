@@ -239,7 +239,7 @@ namespace AdapterOPH
 
         public bool ToFile()
         {
-            if (Report.arhive)
+            if ((bool)Report.arhive)
             {
                 string tempPath = "";
                 using (ZipArchive archive = new ZipArchive())
@@ -252,7 +252,7 @@ namespace AdapterOPH
                 }
             }
 
-            if (Report.arhive)
+            if ((bool)Report.arhive)
             {
                 // DateTime start = OvHNetHelper.HistTimeToDateTime(histstart).ToLocalTime();
                 string source = Path.GetDirectoryName(Report.destinationinfo) + @"\" +

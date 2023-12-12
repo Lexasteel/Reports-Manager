@@ -10,8 +10,8 @@ namespace Models
     public class Historian
     {
         [Key]
-        public int historianId { get; set; }
-        public string ip { get; set; } = String.Empty;
+        public int historianid { get; set; }
+        public string ip { get; set; }
         public int unit { get; set; }
 
         public string unitnet { get; set; }
@@ -27,5 +27,14 @@ namespace Models
             return results;
         }
 
+        public static async Task<int> Insert(IDbConnection connection, Historian historian)
+        {
+            var sql = @"INSERT INTO historians (ip, unit, unitnet, password) VALUES (@ip,
+                            @unit, @unitnet, @password) RETURNING historianid;";
+            var c = await connection.ExecuteScalarAsync<int>(sql, historian).ConfigureAwait(false);
+            connection.Close();
+            return c;
+
+        }
     }
 }

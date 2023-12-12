@@ -72,7 +72,7 @@ namespace AdapterOPH
                         if (take > points.Count) take = points.Count;
                         c = points.Count;
                     }
-                    if (Report.arhive)
+                    if ((bool)Report.arhive)
                     {
                         // DateTime start = OvHNetHelper.HistTimeToDateTime(histstart).ToLocalTime();
                         string source = Path.GetDirectoryName(Report.destinationinfo) + @"\" + Start.ToLocalTime().ToString("yyyy");

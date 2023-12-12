@@ -13,22 +13,22 @@ namespace Models
     {
         [Key]
         public int reportdefinitionid { get; set; }
-        public string reportname { get; set; } = "Отчет по блоку";
-        public int reporttypeid { get; set; } = 1;
-        public int reportdestid { get; set; } = 3;
+        public string? reportname { get; set; } = "Отчет по блоку";
+        public int? reporttypeid { get; set; } = 1;
+        public int? reportdestid { get; set; } = 3;
         public string? destinationinfo { get; set; }
-        public bool arhive { get; set; }
-        public string header2 { get; set; } = "2,3";
-        public int timeformatid { get; set; } = 2;
-        public string timeperiodinfo { get; set; } = "1";
-        public int sampletimeformatid { get; set; } = 1;
-        public string sampletimeperiodinfo { get; set; } = "0:0:0";
+        public bool? arhive { get; set; }
+        public string? header2 { get; set; } = "2,3";
+        public int? timeformatid { get; set; } = 2;
+        public string? timeperiodinfo { get; set; } = "1";
+        public int? sampletimeformatid { get; set; } = 1;
+        public string? sampletimeperiodinfo { get; set; } = "0:0:0";
         public string? additionalparams { get; set; }
-        public int unit { get; set; }
-        public string shift { get; set; } = new TimeSpan(0, 0, 0).ToString();
+        public int? unit { get; set; }
+        public string? shift { get; set; } = new TimeSpan(0, 0, 0).ToString();
         public DateTime? nextevent { get; set; }
         public DateTime? lastused { get; set; }
-        public bool enable { get; set; }
+        public bool? enable { get; set; }
         [Write(false)]
         public List<HistPoint>? HistPoints { get; set; }
 
@@ -175,6 +175,35 @@ namespace Models
             var c = await connection.ExecuteScalarAsync<int>(sql, report).ConfigureAwait(false);
             Console.WriteLine("Insert ReportDefinition  with Id=" + c);
             connection.Close();
+            return c;
+
+        }
+
+        public static int InsertById(IDbConnection connection, ReportDefinition report)
+        {
+
+            var sql = @"INSERT INTO reportdefinitions (reportdefinitionid, reportname,
+                reporttypeid,
+                reportdestid,
+                destinationinfo,
+                arhive,
+                header2,
+                timeformatid,
+                timeperiodinfo,
+                sampletimeformatid,
+                sampletimeperiodinfo,
+                additionalparams,
+                unit,
+                shift,
+                nextevent,
+                lastused,
+                enable) VALUES (@reportdefinitionid, @reportname, @reporttypeid, @reportdestid, @destinationinfo, @arhive, @header2, @timeformatid,
+                @timeperiodinfo, @sampletimeformatid, @sampletimeperiodinfo, @additionalparams, @unit, @shift, @nextevent,
+                @lastused, @enable) RETURNING reportdefinitionid;";
+            //Console.WriteLine(sql);
+            var c = connection.ExecuteScalar<int>(sql, report);
+            Console.WriteLine("Insert ReportDefinition  with Id=" + c);
+           
             return c;
 
         }

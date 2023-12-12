@@ -29,7 +29,7 @@ namespace AdapterOPH
             return pointParamsCollection;
         }
 
-        public static void ParseData(HistItemCollection histItemCollection, IEnumerable<HistPoint> histPoints, int sampleTimeFormatId)
+        public static void ParseData(HistItemCollection histItemCollection, IEnumerable<HistPoint> histPoints, int? sampleTimeFormatId)
         {
 
             //   Dictionary<uint, HistPoint> dictHistPoints = histPoints.ToDictionary(d => d.Handle, s => s);
@@ -141,7 +141,7 @@ namespace AdapterOPH
 
         }
 
-        public static DateTime DateCalc(DateTime date, string timePeriodInfo, int timeFormatId, bool back = false)
+        public static DateTime DateCalc(DateTime date, string timePeriodInfo, int? timeFormatId, bool back = false)
         {
             int days = int.Parse(timePeriodInfo.Split(':')[0]);
             switch (timeFormatId)
