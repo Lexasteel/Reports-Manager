@@ -1,6 +1,7 @@
 ﻿#nullable enable
 using System.Data;
 using System.Threading.Tasks;
+using Models;
 using Npgsql;
 
 namespace AdapterOPH
@@ -45,16 +46,16 @@ namespace AdapterOPH
 
     public class ConnectDb
     {
-      public static IDbConnection GetConnection(string host, int port, string database, string username, string password)
+      public static IDbConnection GetConnection(DbSettings dbSettings)
         {
 
             var npgsqlConnectionStringBuilder = new NpgsqlConnectionStringBuilder
             {
-                Host =host,
-                Port = port,
-                Database =database,
-                Username = username,
-                Password = password
+                Host =dbSettings.Server,
+                Port = dbSettings.Port,
+                Database =dbSettings.Database,
+                Username = dbSettings.UserId,
+                Password = dbSettings.Password
             };
 
             var conn = new NpgsqlConnection(npgsqlConnectionStringBuilder.ConnectionString);

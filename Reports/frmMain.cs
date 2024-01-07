@@ -165,7 +165,7 @@ namespace Reports
 
         private void BarButtonSetting_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            var frmSettings = new FormSettings();
+            var frmSettings = new FormSettings(DataConnection());
             frmSettings.ShowDialog();
         }
 
@@ -1065,7 +1065,7 @@ namespace Reports
                 FieldName = "nextevent",
                 Caption = "След. дата",
                 Visible = true,
-                Width = 50,
+                
             });
 
             gViewMain.Columns.Add(new DevExpress.XtraGrid.Columns.GridColumn()
@@ -1206,12 +1206,15 @@ namespace Reports
 
         public static IDbConnection DataConnection()
         {
-            var host = (string)Settings.Default["Host"];
-            var port = (int)Settings.Default["Port"];
-            var database = (string)Settings.Default["Database"];
-            var user = (string)Settings.Default["User"];
-            var pass = (string)Settings.Default["Password"];
-            return ConnectDb.GetConnection(host, port, database, user, pass);
+            var dbSettings = new DbSettings
+            {
+                Server = (string)Settings.Default["Host"],
+                Port = (int)Settings.Default["Port"],
+                Database = (string)Settings.Default["Database"],
+                UserId = (string)Settings.Default["User"],
+                Password = (string)Settings.Default["Password"]
+            };
+            return ConnectDb.GetConnection(dbSettings);
         }
 
         private void gridControlDetail_DragEnter(object sender, DragEventArgs e)

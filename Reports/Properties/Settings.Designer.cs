@@ -25,7 +25,7 @@ namespace Reports.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("750")]
+        [global::System.Configuration.DefaultSettingValueAttribute("600")]
         public int Heigth {
             get {
                 return ((int)(this["Heigth"]));
@@ -37,7 +37,7 @@ namespace Reports.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1400")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1200")]
         public int Width {
             get {
                 return ((int)(this["Width"]));

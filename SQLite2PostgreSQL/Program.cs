@@ -62,6 +62,7 @@ namespace SQLite2PostgreSQL
                     for (int i = 0; i < pointsByReport.Count; i++)
                     {
                         pointsByReport[i].reportdefinitionid = newId;
+                        pointsByReport[i].pointposn = i + 1;
                         var id = HistPoint.Insert(connNpg, pointsByReport[i]).Result;
                     }
                 
@@ -69,7 +70,7 @@ namespace SQLite2PostgreSQL
 
             }
 
-            var historians = Historian.GetAll(connNpg).Result;
+            var historians = Historian.GetAll(conn).Result;
             foreach (var item in historians)
             {
                 var h = Historian.Insert(connNpg, item).Result;

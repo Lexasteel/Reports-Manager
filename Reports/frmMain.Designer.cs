@@ -150,7 +150,7 @@
             // 
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 28);
-            this.splitContainerControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainerControl1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainerControl1.Name = "splitContainerControl1";
             // 
             // splitContainerControl1.Panel1
@@ -174,19 +174,19 @@
             this.splitContainerControl1.Panel2.Controls.Add(this.lblTotalPoints);
             this.splitContainerControl1.Panel2.Controls.Add(this.gridControlDetail);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1186, 533);
+            this.splitContainerControl1.Size = new System.Drawing.Size(1198, 620);
             this.splitContainerControl1.SplitterPosition = 619;
             this.splitContainerControl1.TabIndex = 1;
             // 
             // gridConrolMain
             // 
             this.gridConrolMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridConrolMain.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.gridConrolMain.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6);
             this.gridConrolMain.Location = new System.Drawing.Point(0, 0);
             this.gridConrolMain.MainView = this.gViewMain;
             this.gridConrolMain.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.gridConrolMain.Name = "gridConrolMain";
-            this.gridConrolMain.Size = new System.Drawing.Size(619, 533);
+            this.gridConrolMain.Size = new System.Drawing.Size(619, 620);
             this.gridConrolMain.TabIndex = 1;
             this.gridConrolMain.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gViewMain});
@@ -205,7 +205,7 @@
             this.btnImportPoints.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnImportPoints.Enabled = false;
             this.btnImportPoints.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnImportPoints.ImageOptions.SvgImage")));
-            this.btnImportPoints.Location = new System.Drawing.Point(507, 430);
+            this.btnImportPoints.Location = new System.Drawing.Point(519, 430);
             this.btnImportPoints.Margin = new System.Windows.Forms.Padding(2);
             this.btnImportPoints.Name = "btnImportPoints";
             this.btnImportPoints.Size = new System.Drawing.Size(36, 36);
@@ -217,7 +217,7 @@
             this.btnExportPoints.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExportPoints.Enabled = false;
             this.btnExportPoints.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnExportPoints.ImageOptions.SvgImage")));
-            this.btnExportPoints.Location = new System.Drawing.Point(507, 387);
+            this.btnExportPoints.Location = new System.Drawing.Point(519, 387);
             this.btnExportPoints.Margin = new System.Windows.Forms.Padding(2);
             this.btnExportPoints.Name = "btnExportPoints";
             this.btnExportPoints.Size = new System.Drawing.Size(36, 36);
@@ -229,7 +229,7 @@
             this.btnDownPoint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDownPoint.Enabled = false;
             this.btnDownPoint.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDownPoint.ImageOptions.SvgImage")));
-            this.btnDownPoint.Location = new System.Drawing.Point(507, 301);
+            this.btnDownPoint.Location = new System.Drawing.Point(519, 301);
             this.btnDownPoint.Margin = new System.Windows.Forms.Padding(2);
             this.btnDownPoint.Name = "btnDownPoint";
             this.btnDownPoint.Size = new System.Drawing.Size(36, 36);
@@ -241,7 +241,7 @@
             this.btnUpPoint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUpPoint.Enabled = false;
             this.btnUpPoint.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnUpPoint.ImageOptions.SvgImage")));
-            this.btnUpPoint.Location = new System.Drawing.Point(507, 258);
+            this.btnUpPoint.Location = new System.Drawing.Point(519, 258);
             this.btnUpPoint.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpPoint.Name = "btnUpPoint";
             this.btnUpPoint.Size = new System.Drawing.Size(36, 36);
@@ -253,7 +253,7 @@
             this.btnRemovePoint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemovePoint.Enabled = false;
             this.btnRemovePoint.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnRemovePoint.ImageOptions.SvgImage")));
-            this.btnRemovePoint.Location = new System.Drawing.Point(507, 344);
+            this.btnRemovePoint.Location = new System.Drawing.Point(519, 344);
             this.btnRemovePoint.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemovePoint.Name = "btnRemovePoint";
             this.btnRemovePoint.Size = new System.Drawing.Size(36, 36);
@@ -265,7 +265,7 @@
             this.btnAddPoint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddPoint.Enabled = false;
             this.btnAddPoint.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnAddPoint.ImageOptions.SvgImage")));
-            this.btnAddPoint.Location = new System.Drawing.Point(507, 215);
+            this.btnAddPoint.Location = new System.Drawing.Point(519, 215);
             this.btnAddPoint.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddPoint.Name = "btnAddPoint";
             this.btnAddPoint.Size = new System.Drawing.Size(36, 36);
@@ -299,9 +299,9 @@
             this.grpGeneral.Controls.Add(this.txtReportName);
             this.grpGeneral.Enabled = false;
             this.grpGeneral.Location = new System.Drawing.Point(7, 0);
-            this.grpGeneral.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpGeneral.Margin = new System.Windows.Forms.Padding(4);
             this.grpGeneral.Name = "grpGeneral";
-            this.grpGeneral.Size = new System.Drawing.Size(542, 206);
+            this.grpGeneral.Size = new System.Drawing.Size(554, 206);
             this.grpGeneral.TabIndex = 1;
             this.grpGeneral.Text = "Общие";
             // 
@@ -315,7 +315,7 @@
             // labelControl8
             // 
             this.labelControl8.Location = new System.Drawing.Point(7, 24);
-            this.labelControl8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.labelControl8.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(28, 13);
             this.labelControl8.TabIndex = 61;
@@ -507,15 +507,15 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1186, 28);
+            this.barDockControlTop.Size = new System.Drawing.Size(1198, 28);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 561);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 648);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1186, 20);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1198, 20);
             // 
             // barDockControlLeft
             // 
@@ -523,15 +523,15 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 28);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 533);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 620);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1186, 28);
+            this.barDockControlRight.Location = new System.Drawing.Point(1198, 28);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 533);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 620);
             // 
             // barEditItem1
             // 
@@ -552,7 +552,7 @@
             this.grpPeriod.Controls.Add(this.lookUpTimeFormat);
             this.grpPeriod.Enabled = false;
             this.grpPeriod.Location = new System.Drawing.Point(10, 132);
-            this.grpPeriod.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpPeriod.Margin = new System.Windows.Forms.Padding(4);
             this.grpPeriod.Name = "grpPeriod";
             this.grpPeriod.Size = new System.Drawing.Size(148, 68);
             this.grpPeriod.TabIndex = 2;
@@ -660,7 +660,7 @@
             this.grpInterval.Controls.Add(this.lookUpSample);
             this.grpInterval.Enabled = false;
             this.grpInterval.Location = new System.Drawing.Point(166, 132);
-            this.grpInterval.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grpInterval.Margin = new System.Windows.Forms.Padding(4);
             this.grpInterval.Name = "grpInterval";
             this.grpInterval.Size = new System.Drawing.Size(207, 68);
             this.grpInterval.TabIndex = 3;
@@ -785,7 +785,7 @@
             // labelControl7
             // 
             this.labelControl7.Location = new System.Drawing.Point(296, 106);
-            this.labelControl7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.labelControl7.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(35, 13);
             this.labelControl7.TabIndex = 59;
@@ -805,7 +805,7 @@
             this.lkpReportDest.Properties.PopupWidthMode = DevExpress.XtraEditors.PopupWidthMode.ContentWidth;
             this.lkpReportDest.Properties.ShowFooter = false;
             this.lkpReportDest.Properties.ShowHeader = false;
-            this.lkpReportDest.Size = new System.Drawing.Size(182, 20);
+            this.lkpReportDest.Size = new System.Drawing.Size(194, 20);
             this.lkpReportDest.TabIndex = 19;
             // 
             // labelControl4
@@ -813,7 +813,7 @@
             this.labelControl4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelControl4.Location = new System.Drawing.Point(296, 80);
-            this.labelControl4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(42, 13);
             this.labelControl4.TabIndex = 20;
@@ -822,7 +822,7 @@
             // labelControl5
             // 
             this.labelControl5.Location = new System.Drawing.Point(7, 83);
-            this.labelControl5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.labelControl5.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(57, 13);
             this.labelControl5.TabIndex = 56;
@@ -841,7 +841,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.tsOffSet.Properties.MaxDays = 0;
             this.tsOffSet.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.SpinButtons;
-            this.tsOffSet.Size = new System.Drawing.Size(182, 20);
+            this.tsOffSet.Size = new System.Drawing.Size(194, 20);
             this.tsOffSet.TabIndex = 33;
             // 
             // chCmbHeader
@@ -862,7 +862,7 @@
             // labelControl6
             // 
             this.labelControl6.Location = new System.Drawing.Point(7, 110);
-            this.labelControl6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.labelControl6.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(71, 13);
             this.labelControl6.TabIndex = 58;
@@ -886,7 +886,7 @@
             // labelControl3
             // 
             this.labelControl3.Location = new System.Drawing.Point(7, 54);
-            this.labelControl3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(59, 13);
             this.labelControl3.TabIndex = 18;
@@ -907,7 +907,7 @@
             this.labelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelControl2.Location = new System.Drawing.Point(296, 54);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(61, 13);
             this.labelControl2.TabIndex = 16;
@@ -918,20 +918,20 @@
             this.lkpReportType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lkpReportType.Location = new System.Drawing.Point(359, 52);
-            this.lkpReportType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lkpReportType.Margin = new System.Windows.Forms.Padding(4);
             this.lkpReportType.Name = "lkpReportType";
             this.lkpReportType.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFit;
             this.lkpReportType.Properties.NullText = "";
             this.lkpReportType.Properties.PopupWidthMode = DevExpress.XtraEditors.PopupWidthMode.ContentWidth;
             this.lkpReportType.Properties.ShowFooter = false;
             this.lkpReportType.Properties.ShowHeader = false;
-            this.lkpReportType.Size = new System.Drawing.Size(179, 20);
+            this.lkpReportType.Size = new System.Drawing.Size(191, 20);
             this.lkpReportType.TabIndex = 15;
             // 
             // labelControl1
             // 
             this.labelControl1.Location = new System.Drawing.Point(160, 24);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(91, 13);
             this.labelControl1.TabIndex = 14;
@@ -945,7 +945,7 @@
             this.txtReportName.Location = new System.Drawing.Point(253, 23);
             this.txtReportName.Margin = new System.Windows.Forms.Padding(6, 2, 6, 2);
             this.txtReportName.Name = "txtReportName";
-            this.txtReportName.Size = new System.Drawing.Size(284, 20);
+            this.txtReportName.Size = new System.Drawing.Size(296, 20);
             this.txtReportName.TabIndex = 13;
             // 
             // btnCancel
@@ -953,7 +953,7 @@
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.Enabled = false;
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
-            this.btnCancel.Location = new System.Drawing.Point(457, 500);
+            this.btnCancel.Location = new System.Drawing.Point(471, 587);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(86, 22);
             this.btnCancel.TabIndex = 57;
@@ -964,7 +964,7 @@
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Enabled = false;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
-            this.btnSave.Location = new System.Drawing.Point(356, 500);
+            this.btnSave.Location = new System.Drawing.Point(368, 587);
             this.btnSave.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(87, 22);
@@ -973,10 +973,10 @@
             // 
             // btnGetDesc
             // 
-            this.btnGetDesc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGetDesc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnGetDesc.Enabled = false;
             this.btnGetDesc.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGetDesc.ImageOptions.Image")));
-            this.btnGetDesc.Location = new System.Drawing.Point(84, 501);
+            this.btnGetDesc.Location = new System.Drawing.Point(7, 587);
             this.btnGetDesc.Name = "btnGetDesc";
             this.btnGetDesc.Size = new System.Drawing.Size(158, 22);
             this.btnGetDesc.TabIndex = 58;
@@ -986,7 +986,7 @@
             // 
             this.lblTotalPoints.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTotalPoints.Enabled = false;
-            this.lblTotalPoints.Location = new System.Drawing.Point(248, 505);
+            this.lblTotalPoints.Location = new System.Drawing.Point(181, 591);
             this.lblTotalPoints.Name = "lblTotalPoints";
             this.lblTotalPoints.Size = new System.Drawing.Size(0, 13);
             this.lblTotalPoints.TabIndex = 74;
@@ -997,12 +997,12 @@
             this.gridControlDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridControlDetail.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.gridControlDetail.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6);
             this.gridControlDetail.Location = new System.Drawing.Point(7, 215);
             this.gridControlDetail.MainView = this.gViewDetail;
             this.gridControlDetail.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.gridControlDetail.Name = "gridControlDetail";
-            this.gridControlDetail.Size = new System.Drawing.Size(492, 278);
+            this.gridControlDetail.Size = new System.Drawing.Size(504, 365);
             this.gridControlDetail.TabIndex = 39;
             this.gridControlDetail.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gViewDetail});
@@ -1023,7 +1023,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1186, 581);
+            this.ClientSize = new System.Drawing.Size(1198, 668);
             this.Controls.Add(this.splitContainerControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);

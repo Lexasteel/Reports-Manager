@@ -37,11 +37,15 @@ namespace Reports
             this.buttonOK = new DevExpress.XtraEditors.SimpleButton();
             this.buttonCancel = new DevExpress.XtraEditors.SimpleButton();
             this.textEditDatabase = new DevExpress.XtraEditors.TextEdit();
+            this.gridControlHistorians = new DevExpress.XtraGrid.GridControl();
+            this.gridViewHistorians = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.textEditHost.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditUser.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditPort.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditDatabase.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlHistorians)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewHistorians)).BeginInit();
             this.SuspendLayout();
             // 
             // textEditHost
@@ -86,8 +90,9 @@ namespace Reports
             // 
             // buttonOK
             // 
+            this.buttonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonOK.Location = new System.Drawing.Point(168, 112);
+            this.buttonOK.Location = new System.Drawing.Point(262, 322);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 4;
@@ -95,8 +100,9 @@ namespace Reports
             // 
             // buttonCancel
             // 
+            this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(248, 112);
+            this.buttonCancel.Location = new System.Drawing.Point(342, 322);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 5;
@@ -112,11 +118,30 @@ namespace Reports
             this.textEditDatabase.Size = new System.Drawing.Size(100, 20);
             this.textEditDatabase.TabIndex = 6;
             // 
+            // gridControlHistorians
+            // 
+            this.gridControlHistorians.EmbeddedNavigator.TextStringFormat = "Historian {0} of {1}";
+            this.gridControlHistorians.Location = new System.Drawing.Point(13, 102);
+            this.gridControlHistorians.MainView = this.gridViewHistorians;
+            this.gridControlHistorians.Name = "gridControlHistorians";
+            this.gridControlHistorians.Size = new System.Drawing.Size(400, 200);
+            this.gridControlHistorians.TabIndex = 7;
+            this.gridControlHistorians.UseEmbeddedNavigator = true;
+            this.gridControlHistorians.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewHistorians});
+            // 
+            // gridViewHistorians
+            // 
+            this.gridViewHistorians.GridControl = this.gridControlHistorians;
+            this.gridViewHistorians.Name = "gridViewHistorians";
+            this.gridViewHistorians.OptionsView.ShowGroupPanel = false;
+            // 
             // FormSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(329, 144);
+            this.ClientSize = new System.Drawing.Size(423, 354);
+            this.Controls.Add(this.gridControlHistorians);
             this.Controls.Add(this.textEditDatabase);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOK);
@@ -136,6 +161,8 @@ namespace Reports
             ((System.ComponentModel.ISupportInitialize)(this.textEditPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditPort.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEditDatabase.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlHistorians)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewHistorians)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -149,5 +176,7 @@ namespace Reports
         private DevExpress.XtraEditors.SimpleButton buttonOK;
         private DevExpress.XtraEditors.SimpleButton buttonCancel;
         private DevExpress.XtraEditors.TextEdit textEditDatabase;
+        private DevExpress.XtraGrid.GridControl gridControlHistorians;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewHistorians;
     }
 }
