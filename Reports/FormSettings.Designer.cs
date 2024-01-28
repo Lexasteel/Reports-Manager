@@ -53,8 +53,6 @@ namespace Reports
             this.textEditHost.EditValue = "";
             this.textEditHost.Location = new System.Drawing.Point(12, 12);
             this.textEditHost.Name = "textEditHost";
-            this.textEditHost.Properties.AdvancedModeOptions.AllowCaretAnimation = DevExpress.Utils.DefaultBoolean.True;
-            this.textEditHost.Properties.AdvancedModeOptions.AllowSelectionAnimation = DevExpress.Utils.DefaultBoolean.True;
             this.textEditHost.Size = new System.Drawing.Size(100, 20);
             this.textEditHost.TabIndex = 0;
             // 
@@ -63,8 +61,6 @@ namespace Reports
             this.textEditUser.EditValue = "";
             this.textEditUser.Location = new System.Drawing.Point(12, 55);
             this.textEditUser.Name = "textEditUser";
-            this.textEditUser.Properties.AdvancedModeOptions.AllowCaretAnimation = DevExpress.Utils.DefaultBoolean.True;
-            this.textEditUser.Properties.AdvancedModeOptions.AllowSelectionAnimation = DevExpress.Utils.DefaultBoolean.True;
             this.textEditUser.Size = new System.Drawing.Size(100, 20);
             this.textEditUser.TabIndex = 1;
             // 
@@ -73,8 +69,6 @@ namespace Reports
             this.textEditPassword.EditValue = "";
             this.textEditPassword.Location = new System.Drawing.Point(118, 55);
             this.textEditPassword.Name = "textEditPassword";
-            this.textEditPassword.Properties.AdvancedModeOptions.AllowCaretAnimation = DevExpress.Utils.DefaultBoolean.True;
-            this.textEditPassword.Properties.AdvancedModeOptions.AllowSelectionAnimation = DevExpress.Utils.DefaultBoolean.True;
             this.textEditPassword.Size = new System.Drawing.Size(100, 20);
             this.textEditPassword.TabIndex = 2;
             // 
@@ -83,8 +77,6 @@ namespace Reports
             this.textEditPort.EditValue = "";
             this.textEditPort.Location = new System.Drawing.Point(118, 12);
             this.textEditPort.Name = "textEditPort";
-            this.textEditPort.Properties.AdvancedModeOptions.AllowCaretAnimation = DevExpress.Utils.DefaultBoolean.True;
-            this.textEditPort.Properties.AdvancedModeOptions.AllowSelectionAnimation = DevExpress.Utils.DefaultBoolean.True;
             this.textEditPort.Size = new System.Drawing.Size(100, 20);
             this.textEditPort.TabIndex = 3;
             // 
@@ -113,8 +105,6 @@ namespace Reports
             this.textEditDatabase.EditValue = "";
             this.textEditDatabase.Location = new System.Drawing.Point(224, 12);
             this.textEditDatabase.Name = "textEditDatabase";
-            this.textEditDatabase.Properties.AdvancedModeOptions.AllowCaretAnimation = DevExpress.Utils.DefaultBoolean.True;
-            this.textEditDatabase.Properties.AdvancedModeOptions.AllowSelectionAnimation = DevExpress.Utils.DefaultBoolean.True;
             this.textEditDatabase.Size = new System.Drawing.Size(100, 20);
             this.textEditDatabase.TabIndex = 6;
             // 
@@ -151,7 +141,7 @@ namespace Reports
             this.Controls.Add(this.textEditHost);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.HelpButton = true;
-            this.IconOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("FormSettings.IconOptions.SvgImage")));
+            
             this.Name = "FormSettings";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Threading.Tasks;
 
 
 namespace Models
@@ -13,27 +12,27 @@ namespace Models
     {
         [Key]
         public int reportdefinitionid { get; set; }
-        public string? reportname { get; set; } = "Отчет по блоку";
+        public string reportname { get; set; } = "Отчет по блоку";
         public int? reporttypeid { get; set; } = 1;
         public int? reportdestid { get; set; } = 3;
-        public string? destinationinfo { get; set; }
+        public string destinationinfo { get; set; }
         public bool? arhive { get; set; }
-        public string? header2 { get; set; } = "2,3";
+        public string header2 { get; set; } = "2,3";
         public int? timeformatid { get; set; } = 2;
-        public string? timeperiodinfo { get; set; } = "1";
+        public string timeperiodinfo { get; set; } = "1";
         public int? sampletimeformatid { get; set; } = 1;
-        public string? sampletimeperiodinfo { get; set; } = "0:0:0";
-        public string? additionalparams { get; set; }
+        public string sampletimeperiodinfo { get; set; } = "0:0:0";
+        public string additionalparams { get; set; }
         public int? unit { get; set; }
-        public string? shift { get; set; } = new TimeSpan(0, 0, 0).ToString();
+        public string shift { get; set; } = new TimeSpan(0, 0, 0).ToString();
         public DateTime? nextevent { get; set; }
         public DateTime? lastused { get; set; }
         public bool? enable { get; set; }
         [Write(false)]
-        public List<HistPoint>? HistPoints { get; set; }
+        public List<HistPoint> HistPoints { get; set; }
 
         [Write(false)]
-        public IEnumerable<Historian>? Historians { get; set; }
+        public IEnumerable<Historian> Historians { get; set; }
 
         public override bool Equals(object obj)
         {
@@ -85,45 +84,43 @@ namespace Models
 
 
 
-        public static async Task<IEnumerable<ReportDefinition>> GetAll(IDbConnection connection)
+        public static IEnumerable<ReportDefinition> GetAll(IDbConnection connection)
         {
             var sql = "SELECT * from reportdefinitions ORDER BY reportname";
+            
+            var result =  connection.Query<ReportDefinition>(sql);
             //Console.WriteLine(sql);
             connection.Close();
-            return await connection.QueryAsync<ReportDefinition>(sql).ConfigureAwait(false);
+            return result;
         }
 
-        public static async Task<List<HistPoint>> GetHistPoints(IDbConnection connection, int id)
+        public static  List<HistPoint> GetHistPoints(IDbConnection connection, int id)
         {
             var sql = "SELECT * from histpoints WHERE reportdefinitionid=@Id ORDER BY pointposn";
-            //Console.WriteLine(sql);
-           
-            var results = await connection.QueryAsync<HistPoint>(sql, new { Id = id }).ConfigureAwait(false);
+            var results =  connection.Query<HistPoint>(sql, new { Id = id }).ToList();
             connection.Close();
-            return results.ToList();
+            return results;
         }
 
-        public static async Task<ReportDefinition?> GetById(IDbConnection connection, int id)
+        public static ReportDefinition GetById(IDbConnection connection, int id)
         {
             var sql = "SELECT * from reportdefinitions WHERE reportdefinitionid=@Id";
-            //Console.WriteLine(sql);
-            IEnumerable<ReportDefinition?> result= await connection.QueryAsync<ReportDefinition>(sql, new { Id = id }).ConfigureAwait(false);
+            var result= connection.Query<ReportDefinition>(sql, new { Id = id });
             connection.Close();
-            foreach (var definition in result) return definition;
-            return null;
+            return result.FirstOrDefault();
+          
         }
-        public static async Task<List<ReportDefinition>> GetByEnabled(IDbConnection connection)
+        public static  List<ReportDefinition> GetByEnabled(IDbConnection connection)
         {
             var now = DateTime.Now;
             var enable = true;
             var sql = "SELECT * FROM reportdefinitions WHERE nextevent < @Now AND enable=@enable";
-            //Console.WriteLine(sql);
-            var results = await connection.QueryAsync<ReportDefinition>(sql, new { Now = now, Enable = enable }).ConfigureAwait(false);
+            var results = connection.Query<ReportDefinition>(sql, new { Now = now, Enable = enable }).ToList();
             connection.Close();
-            return results.ToList();
+            return results;
         }
 
-        public static async Task<int> Update(IDbConnection connection, ReportDefinition report)
+        public static  int Update(IDbConnection connection, ReportDefinition report)
         {
 
             const string sql = @"UPDATE reportdefinitions SET reportname = @reportname,
@@ -143,14 +140,13 @@ namespace Models
                 lastused = @lastused,
                 enable = @enable 
                 WHERE reportdefinitionid = @reportdefinitionid";
-            //Console.WriteLine(sql);
-            var c = await connection.ExecuteAsync(sql, report).ConfigureAwait(false);
+            var c = connection.Execute(sql, report);
             Console.WriteLine("Update ReportDefinition " + c + " rows");
             connection.Close();
             return c;
 
         }
-        public static async Task<int> Insert(IDbConnection connection, ReportDefinition report)
+        public static int Insert(IDbConnection connection, ReportDefinition report)
         {
 
             var sql = @"INSERT INTO reportdefinitions ( reportname,
@@ -172,48 +168,47 @@ namespace Models
                 @timeperiodinfo, @sampletimeformatid, @sampletimeperiodinfo, @additionalparams, @unit, @shift, @nextevent,
                 @lastused, @enable) RETURNING reportdefinitionid;";
             //Console.WriteLine(sql);
-            var c = await connection.ExecuteScalarAsync<int>(sql, report).ConfigureAwait(false);
-            Console.WriteLine("Insert ReportDefinition  with Id=" + c);
+            var c = connection.ExecuteScalar<int>(sql, report);
+            Console.WriteLine("Insert ReportDefinition  with Id=" + c.ToString() + " "+report.reportname);
             connection.Close();
             return c;
 
         }
 
-        public static int InsertById(IDbConnection connection, ReportDefinition report)
-        {
+        //public static int InsertById(IDbConnection connection, ReportDefinition report)
+        //{
 
-            var sql = @"INSERT INTO reportdefinitions (reportdefinitionid, reportname,
-                reporttypeid,
-                reportdestid,
-                destinationinfo,
-                arhive,
-                header2,
-                timeformatid,
-                timeperiodinfo,
-                sampletimeformatid,
-                sampletimeperiodinfo,
-                additionalparams,
-                unit,
-                shift,
-                nextevent,
-                lastused,
-                enable) VALUES (@reportdefinitionid, @reportname, @reporttypeid, @reportdestid, @destinationinfo, @arhive, @header2, @timeformatid,
-                @timeperiodinfo, @sampletimeformatid, @sampletimeperiodinfo, @additionalparams, @unit, @shift, @nextevent,
-                @lastused, @enable) RETURNING reportdefinitionid;";
-            //Console.WriteLine(sql);
-            var c = connection.ExecuteScalar<int>(sql, report);
-            Console.WriteLine("Insert ReportDefinition  with Id=" + c);
+        //    var sql = @"INSERT INTO reportdefinitions (reportdefinitionid, reportname,
+        //        reporttypeid,
+        //        reportdestid,
+        //        destinationinfo,
+        //        arhive,
+        //        header2,
+        //        timeformatid,
+        //        timeperiodinfo,
+        //        sampletimeformatid,
+        //        sampletimeperiodinfo,
+        //        additionalparams,
+        //        unit,
+        //        shift,
+        //        nextevent,
+        //        lastused,
+        //        enable) VALUES (@reportdefinitionid, @reportname, @reporttypeid, @reportdestid, @destinationinfo, @arhive, @header2, @timeformatid,
+        //        @timeperiodinfo, @sampletimeformatid, @sampletimeperiodinfo, @additionalparams, @unit, @shift, @nextevent,
+        //        @lastused, @enable) RETURNING reportdefinitionid;";
+        //    //Console.WriteLine(sql);
+        //    var c = connection.ExecuteScalar<int>(sql, report);
+        //    Console.WriteLine("Insert ReportDefinition  with Id=" + c);
            
-            return c;
+        //    return c;
 
-        }
+        //}
 
-        public static async Task<int> Delete(IDbConnection connection, int id)
+        public static  int Delete(IDbConnection connection, int id)
         {
             const string sql = "DELETE FROM reportdefinitions WHERE reportdefinitionid=@Id";
             Console.WriteLine(sql);
-            var c = await connection.ExecuteAsync(sql, new { Id = id }).ConfigureAwait(false);
-            //Console.WriteLine("Delete ReportDefinition " + c + " rows");
+            var c = connection.Execute(sql, new { Id = id });
             connection.Close();
             return c;
         }

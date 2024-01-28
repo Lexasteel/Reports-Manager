@@ -1,5 +1,6 @@
-﻿#nullable enable
+﻿
 using System.Data;
+using System.Threading;
 using System.Threading.Tasks;
 using Models;
 using Npgsql;
@@ -8,7 +9,7 @@ namespace AdapterOPH
 {
     public interface IConnection
     {
-        OvHNetClientConnection Open(string? ip, IReport report);
+        OvHNetClientConnection Open(string ip, IReport report);
         void Close();
     }
     public class ConnectToHist : IConnection
@@ -20,18 +21,19 @@ namespace AdapterOPH
             _connection.Close();
         }
 
-        public  OvHNetClientConnection Open(string? ip, IReport report)
+        public  OvHNetClientConnection Open(string ip, IReport report)
         {
-            if (ip == null) return null!;
+            if (ip == null) return null;
             
-           var task = Task.Run(() => _connection.Open(ip, "", "", "ReportManager"));
+           var task = Task.Factory.StartNew(() => _connection.Open(ip, "", "", "ReportManager"));
             
             var c = $"Connecting to: {ip}";
             var sec = 0;
             while (!task.IsCompleted)
             {
                 report.State(report.Progress, null, c + $" - {sec} sec");
-                Task.Delay(1000).Wait();
+                Thread.Sleep(1000);
+                //Task.Delay(1000).Wait();
                 sec++;
             }
             int errConnection = task.Result;
@@ -39,7 +41,7 @@ namespace AdapterOPH
             var err = $"{new OvHNetClientErrors().GetErrString(errConnection)} - {ip}";
             report.State(0, 4, err);
 
-            return null!;
+            return null;
 
         }
     }
@@ -54,7 +56,7 @@ namespace AdapterOPH
                 Host =dbSettings.Server,
                 Port = dbSettings.Port,
                 Database =dbSettings.Database,
-                Username = dbSettings.UserId,
+                UserName = dbSettings.UserId,
                 Password = dbSettings.Password
             };
 

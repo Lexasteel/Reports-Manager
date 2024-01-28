@@ -81,7 +81,6 @@
             this.DateEditStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.DateEditStart.Properties.EditFormat.FormatString = "dd.MM.yy HH:mm:ss";
             this.DateEditStart.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.DateEditStart.Properties.MaskSettings.Set("mask", "dd.MM.yyyy HH:mm:ss");
             this.DateEditStart.Size = new System.Drawing.Size(176, 22);
             this.DateEditStart.TabIndex = 0;
             // 
@@ -99,7 +98,6 @@
             this.DateEditEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.DateEditEnd.Properties.EditFormat.FormatString = "dd.MM.yy HH:mm:ss";
             this.DateEditEnd.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.DateEditEnd.Properties.MaskSettings.Set("mask", "dd.MM.yyyy HH:mm:ss");
             this.DateEditEnd.Size = new System.Drawing.Size(176, 22);
             this.DateEditEnd.TabIndex = 1;
             // 
@@ -144,7 +142,7 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.IconOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("formInputDates.IconOptions.SvgImage")));
+           
             this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;

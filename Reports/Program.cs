@@ -3,8 +3,6 @@ using Models;
 using NLog;
 using Reports;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -41,8 +39,8 @@ namespace ReportMgr
         {
             var mode = args.Length > 0 ? args[0] : "-gui"; //default to gui
             var log = LogManager.GetCurrentClassLogger();
-            try
-            {
+            //try
+            //{
                 switch (mode)
                 {
                     case "-gui":
@@ -55,7 +53,7 @@ namespace ReportMgr
                         AttachConsole(-1);
                         Console.WriteLine();
                         Console.Write("Connect to database");
-                        var t = ReportDefinition.GetByEnabled(FrmMain.DataConnection());
+                        var t = Task.Factory.StartNew(()=> ReportDefinition.GetByEnabled(FrmMain.DataConnection()));
                         while (!t.IsCompleted && !t.IsFaulted)
                         {
                             Console.Write(".");
@@ -73,8 +71,8 @@ namespace ReportMgr
                         {
                             var res = true;
                             report.HistPoints = ReportDefinition
-                                .GetHistPoints(FrmMain.DataConnection(), report.reportdefinitionid).Result;
-                            report.Historians = Historian.GetAll(FrmMain.DataConnection()).Result;
+                                .GetHistPoints(FrmMain.DataConnection(), report.reportdefinitionid);
+                            report.Historians = Historian.GetAll(FrmMain.DataConnection());
 
                             while (res)
                             {
@@ -126,13 +124,13 @@ namespace ReportMgr
                         FreeConsole();
                         break;
                 }
-            }
-            catch (Exception e)
-            {
-                log.Error(e.Message);
-                Console.WriteLine(e.Message);
-                Thread.Sleep(5000);
-            }
+            //}
+            //catch (Exception e)
+            //{
+            //    log.Error(e.Message);
+            //    Console.WriteLine(e.Message);
+              
+            //}
         }
 
         static IReport CreateReport(ReportDefinition report, DateTime start, DateTime end)

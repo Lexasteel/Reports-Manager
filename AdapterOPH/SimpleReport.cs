@@ -22,9 +22,9 @@ namespace AdapterOPH
         private readonly Logger _log = LogManager.GetCurrentClassLogger();
 
         public delegate void ReportEvent(object sender, ReportEventArgs e);
-        public event IReport.ReportEvent ReportChanged;
+        public event ReportEvent ReportChanged;
 
-        public void State(int percent, int? level, string? message)
+        public void State(int percent, int? level, string message)
         {
             ReportChanged?.Invoke(this, new ReportEventArgs(percent, level, message));
             this.Progress = percent;
@@ -222,7 +222,7 @@ namespace AdapterOPH
                     //ExportFile.Export(report);
                     foreach (var item in Report.HistPoints)
                     {
-                        item.FValues = new SortedDictionary<DateTime, float>();
+                        item.FValues = new Dictionary<DateTime, float>();
                     }
                 }
                 else

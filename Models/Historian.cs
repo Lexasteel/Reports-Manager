@@ -1,9 +1,7 @@
-﻿using System;
+﻿using Dapper;
+using Dapper.Contrib.Extensions;
 using System.Collections.Generic;
 using System.Data;
-using System.Threading.Tasks;
-using Dapper;
-using Dapper.Contrib.Extensions;
 
 namespace Models
 {
@@ -17,20 +15,20 @@ namespace Models
  
 
       
-        public static async Task<IEnumerable<Historian>> GetAll(IDbConnection connection)
+        public static IEnumerable<Historian> GetAll(IDbConnection connection)
         {
             var sql = "SELECT * from historians";
             //Console.WriteLine(sql);
-            var results = await connection.QueryAsync<Historian>(sql).ConfigureAwait(false);
+            var results =  connection.Query<Historian>(sql);
             connection.Close();
             return results;
         }
 
-        public static async Task<int> Insert(IDbConnection connection, Historian historian)
+        public static  int Insert(IDbConnection connection, Historian historian)
         {
             var sql = @"INSERT INTO historians (ip, unit, unitnet) VALUES (@ip,
                             @unit, @unitnet) RETURNING historianid;";
-            var c = await connection.ExecuteScalarAsync<int>(sql, historian).ConfigureAwait(false);
+            var c =  connection.ExecuteScalar<int>(sql, historian);
             connection.Close();
             return c;
 
@@ -49,7 +47,7 @@ namespace Models
         {
             var idHashCode = this.historianid.GetHashCode();
             var ipHashCode = this.ip == null ? 0 : this.ip.GetHashCode();
-            var unitHashCode = this.unit == null ? 0 : this.unit.GetHashCode();
+            var unitHashCode = this.unit.GetHashCode();
             var unitNetHashCode = this.unitnet == null ? 0 : this.unitnet.GetHashCode();
 
             return idHashCode ^ ipHashCode ^ unitHashCode ^ unitNetHashCode;

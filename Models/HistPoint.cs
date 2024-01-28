@@ -3,7 +3,6 @@ using Dapper.Contrib.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Threading.Tasks;
 
 namespace Models
 {
@@ -31,21 +30,21 @@ namespace Models
         //[Write(false)]
         //public int SignificantDigits { get; set; }
         [Write(false)]
-        public SortedDictionary<DateTime, float> FValues { get; set; } = new SortedDictionary<DateTime, float>();
+        public Dictionary<DateTime, float> FValues { get; set; } = new Dictionary<DateTime, float>();
 
         [Write(false)]
         public uint Handle { get; set; }
 
 
 
-        public static async Task<IEnumerable<HistPoint>> GetById(IDbConnection connection, int id)
+        public static IEnumerable<HistPoint> GetById(IDbConnection connection, int id)
         {
             var sql = "SELECT * from histpoints WHERE histpointid=@Id";
-            var results =  await connection.QueryAsync<HistPoint>(sql, new { Id = id }).ConfigureAwait(false);
+            var results = connection.Query<HistPoint>(sql, new { Id = id });
             connection.Close();
             return results;
         }
-        public static async Task<int> Update(IDbConnection connection, HistPoint point)
+        public static int Update(IDbConnection connection, HistPoint point)
         {
 
             const string sql = @"UPDATE histpoints SET pointposn = @pointposn,
@@ -57,34 +56,27 @@ namespace Models
                             format = @format,
                             description = @description 
                 WHERE histpointid = @histpointid";
-            //Console.WriteLine(sql);
-            var c = await connection.ExecuteAsync(sql, point).ConfigureAwait(false);
-            //Console.WriteLine("Update HistPoint " + c + " rows");
+            var c = connection.Execute(sql, point);
             connection.Close();
             return c;
 
         }
-        public static async Task<int> Insert(IDbConnection connection, HistPoint point)
+        public static  int Insert(IDbConnection connection, HistPoint point)
         {
-
             var sql = @"INSERT INTO histpoints (pointposn, pointname, bitnumber, proctype, integconst, reportdefinitionid, format, description) VALUES (@pointposn,
                             @pointname, @bitnumber, @proctype, @integconst, @reportdefinitionid, @format, @description) RETURNING histpointid;";
-            //Console.WriteLine(sql);
-            var c = await connection.ExecuteScalarAsync<int>(sql, point).ConfigureAwait(false);
-            //Console.WriteLine("Insert HistPoint  with Id=" + c);
+            var c = connection.ExecuteScalar<int>(sql, point);
             connection.Close();
             return c;
 
         }
 
-        public static async Task<int> Delete(IDbConnection connection, int id)
+        public static int Delete(IDbConnection connection, int id)
         {
             const string sql = "DELETE FROM histpoints WHERE histpointid=@Id";
-            //Console.WriteLine(sql);
-            var c = await connection.ExecuteAsync(sql, new { Id = id }).ConfigureAwait(false);
-            //Console.WriteLine("Delete HistPoint " + c + " rows");
+            var c =  connection.Execute(sql, new { Id = id });
             connection.Close();
-            return c;
+            return  c;
         }
 
         public override bool Equals(object obj)
@@ -106,14 +98,14 @@ namespace Models
         public override int GetHashCode()
         {
             var idHashCode = this.histpointid.GetHashCode();
-            var posnHashCode = this.pointposn == null ? 0 : this.pointposn.GetHashCode();
+            var posnHashCode =  this.pointposn.GetHashCode();
             var nameHashCode = this.pointname == null ? 0 : this.pointname.GetHashCode();
-            var bitHashCode = this.bitnumber == null ? 0 : this.bitnumber.GetHashCode();
-            var procHashCode = this.proctype == null ? 0 : this.proctype.GetHashCode();
+            var bitHashCode =  this.bitnumber.GetHashCode();
+            var procHashCode =  this.proctype.GetHashCode();
             var integHashCode = this.integconst == null ? 0 : this.integconst.GetHashCode();
             //var glitchHashCode = this.glitchdetect == null ? 0 : this.glitchdetect.GetHashCode();
            // var summarHashCode = this.summaryenable == null ? 0 : this.summaryenable.GetHashCode();
-            var repoIdHashCode = this.reportdefinitionid == null ? 0 : this.reportdefinitionid.GetHashCode();
+            var repoIdHashCode = this.reportdefinitionid.GetHashCode();
             var descrHashCode = this.description == null ? 0 : this.description.GetHashCode();
             var formatHashCode = this.format == null ? 0 : this.format.GetHashCode();
 

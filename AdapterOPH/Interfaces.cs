@@ -16,9 +16,9 @@ namespace AdapterOPH
         bool ToFile();
        int Progress { get; set; }
        bool MultiSheets { get; set; }
-       void State(int percent, int? level, string? message);
-       delegate void ReportEvent(object sender, ReportEventArgs e);
-        event ReportEvent ReportChanged;
+       void State(int percent, int? level, string message);
+       //delegate void ReportEvent(object sender, ReportEventArgs e);
+       // event ReportEvent ReportChanged;
       
     }
     public class ReportEventArgs

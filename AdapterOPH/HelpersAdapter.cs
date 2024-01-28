@@ -1,15 +1,13 @@
-﻿using Models;
-using NLog;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using Models;
 
 namespace AdapterOPH
 {
-     public class HelpersAdapter
+    public class HelpersAdapter
     {
         public static PointParamsCollection PointParamsCollectionInit(IEnumerable<HistPoint> histPoints, bool raw)
         {

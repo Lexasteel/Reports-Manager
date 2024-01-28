@@ -8,7 +8,7 @@ namespace Models
 {
     public class Database
     {
-        private DbSettings _dbSettings;
+        //private DbSettings _dbSettings;
 
         //public Database(IOptions<DbSettings> dbSettings)
         //{
@@ -33,8 +33,8 @@ namespace Models
             _dbSettings.UserId = "postgres";
             _dbSettings.Password = "postgres"; 
             // create database if it doesn't exist
-            var connectionString = $"Host={_dbSettings.Server}; Database=postgres; Username={_dbSettings.UserId}; Password={_dbSettings.Password};";
-            using var connection = new NpgsqlConnection(connectionString);
+            var connectionString = $"Host={_dbSettings.Server}; Database=postgres; Username={_dbSettings.UserId}; Password={_dbSettings.Password};"; 
+            var connection = new NpgsqlConnection(connectionString);
             var sqlDbCount = $"SELECT COUNT(*) FROM pg_database WHERE datname = '{_dbSettings.Database}';";
             var dbCount =  connection.ExecuteScalar<int>(sqlDbCount);
             if (dbCount == 0)
@@ -116,10 +116,10 @@ namespace Models
 
     public class DbSettings
     {
-        public string? Server { get; set; }
+        public string Server { get; set; }
         public int Port { get; set; }
-        public string? Database { get; set; }
-        public string? UserId { get; set; }
-        public string? Password { get; set; }
+        public string Database { get; set; }
+        public string UserId { get; set; }
+        public string Password { get; set; }
     }
 }

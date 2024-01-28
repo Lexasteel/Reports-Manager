@@ -20,7 +20,6 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -119,7 +118,6 @@ namespace Reports
             switch (e.InsertType)
             {
                 case InsertType.Before:
-                    labelControl9.Text = "before "+DateTime.Now.Second;
                     newRowIndex = targetRowIndex > sourceHandles[sourceHandles.Length - 1] ? targetRowIndex - 1 : targetRowIndex;
                     for (int i = draggedRows.Count - 1; i >= 0; i--)
                     {
@@ -136,7 +134,6 @@ namespace Reports
                     }
                     break;
                 case InsertType.After:
-                    labelControl9.Text = "after " + DateTime.Now.Second;
                     newRowIndex = targetRowIndex < sourceHandles[0] ? targetRowIndex + 1 : targetRowIndex;
                     for (int i = 0; i < draggedRows.Count; i++)
                     {
@@ -153,7 +150,6 @@ namespace Reports
                     }
                     break;
                 default:
-                    labelControl9.Text = "default " + DateTime.Now.Second;
                     newRowIndex = -1;
                     break;
             }
@@ -188,25 +184,34 @@ namespace Reports
         //static CancellationTokenSource _cancelTokenSource = new CancellationTokenSource();
         //CancellationToken _token = _cancelTokenSource.Token;
 
-        private async void DataBinding(bool reset = false)
+        private void DataBinding(bool reset = false)
         {
-            var reports = await ReportDefinition.GetAll(DataConnection());
+            var reports = ReportDefinition.GetAll(DataConnection());
             _bindingSourceMain.DataSource = reports.OrderBy(o => o.reportdefinitionid).ToList();
             gridConrolMain.DataSource = _bindingSourceMain;
             if (reset) return;
+
+
             txtReportName.DataBindings.Add("EditValue", _bindingSourceMain, "reportname");
-            cmbUnit.DataBindings.Add("EditValue", _bindingSourceMain, "unit");
+            //cmbUnit.DataBindings.Add("EditValue", _bindingSourceMain, "unit");
             btnEditDestinationInfo.DataBindings.Add("EditValue", _bindingSourceMain, "destinationinfo");
             deNextEvent.DataBindings.Add("EditValue", _bindingSourceMain, "nextevent", true);
             chkEnable.DataBindings.Add("EditValue", _bindingSourceMain, "enable", true);
             tsOffSet.DataBindings.Add("EditValue", _bindingSourceMain, "shift", true);
             chZip.DataBindings.Add("EditValue", _bindingSourceMain, "arhive", true);
+            var h = Historian.GetAll(DataConnection()).Select(s => new Item() { Id = s.unit, Value = s.unit.ToString() }).ToList();
 
+            LookUpEdit_DataBinding(cmbUnit, h, "unit");
 
             LookUpEdit_DataBinding(lkpReportType, Dictionares.ReportType, "reporttypeid");
             LookUpEdit_DataBinding(lkpReportDest, Dictionares.DestinationType, "reportdestid");
-            LookUpEdit_DataBinding(lookUpTimeFormat, Dictionares.TimeType, "timeformatid");
+            var timeTypesWithoutFracs = new List<Item>();
+            timeTypesWithoutFracs.AddRange(Dictionares.TimeType);
+            var item = timeTypesWithoutFracs.FirstOrDefault(f => f.Id == 6);
+            timeTypesWithoutFracs.Remove(item);
+            LookUpEdit_DataBinding(lookUpTimeFormat, timeTypesWithoutFracs, "timeformatid");
             LookUpEdit_DataBinding(lookUpSample, Dictionares.TimeType, "sampletimeformatid");
+
 
             chCmbHeader.Properties.EditValueType = EditValueTypeCollection.CSV;
             chCmbHeader.DataBindings.Add(new Binding("EditValue", _bindingSourceMain, "header2"));
@@ -224,7 +229,7 @@ namespace Reports
             timer1.Interval = 1000;
             Timer_Start();
         }
-        private async void FrmMain_Load(object sender, EventArgs e)
+        private  void FrmMain_Load(object sender, EventArgs e)
         {
             InitgViewMain();
             InitgViewDetail();
@@ -257,10 +262,25 @@ namespace Reports
             //splitContainerControl1.Panel2.Size = new Size(Panel2Width, splitContainerControl1.Panel2.Size.Height);
             barButtonTimerStart.Enabled = false;
             barProgress.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
-
+            SpinEdit_Config(spinSampleHours);
+            SpinEdit_Config(spinSampleMinutes);
+            SpinEdit_Config(spinSampleSecs);
+            SpinEdit_Config(spinTimeHours);
+            SpinEdit_Config(spinTimeMinutes);
+            SpinEdit_Config(spinTimeSecs);
         }
 
-        private void LookUpEdit_DataBinding(LookUpEdit sender, IReadOnlyCollection<Item> items, string dataMember = null)
+        private void SpinEdit_Config(SpinEdit spinEdit)
+        {
+            spinEdit.Properties.DisplayFormat.FormatType = FormatType.Numeric;
+            spinEdit.Properties.DisplayFormat.FormatString = "00";
+            spinEdit.Properties.EditFormat.FormatString = "00";
+            spinEdit.Properties.IsFloatValue = false;
+            spinEdit.Properties.MaxValue = 59;
+            spinEdit.Properties.MinValue = 0;
+        }
+
+        private void LookUpEdit_DataBinding(LookUpEdit sender, List<Item> items, string dataMember = null)
         {
             sender.Properties.DataSource = items;
             sender.Properties.DropDownRows = items.Count;
@@ -268,7 +288,7 @@ namespace Reports
             sender.Properties.ValueMember = "Id";
             if (dataMember != null)
             {
-                sender.DataBindings.Add(new Binding("EditValue", _bindingSourceMain, dataMember));
+                sender.DataBindings.Add(new Binding("EditValue", _bindingSourceMain, dataMember,true));
             }
             sender.Properties.PopulateColumns();
             sender.Properties.Columns[0].Visible = false;
@@ -309,10 +329,10 @@ namespace Reports
             Application.ExitThread();
         }
         #region Detail
-        private async void Select_Detail(int id, State state)
+        private void Select_Detail(int id, State state)
         {
             var report = (ReportDefinition)_bindingSourceMain.Current;
-            var points = await ReportDefinition.GetHistPoints(DataConnection(), report.reportdefinitionid);
+            var points = ReportDefinition.GetHistPoints(DataConnection(), report.reportdefinitionid);
             report.HistPoints = report.reportdefinitionid > 0
                 ? points
                 : new List<HistPoint>();
@@ -333,7 +353,7 @@ namespace Reports
             {
                 case 1:
                     spinSampleHours.EditValue = report.sampletimeperiodinfo.Split(':')[0];
-                    spinSampleMins.EditValue = report.sampletimeperiodinfo.Split(':')[1];
+                    spinSampleMinutes.EditValue = report.sampletimeperiodinfo.Split(':')[1];
                     spinSampleSecs.EditValue = report.sampletimeperiodinfo.Split(':')[2];
                     break;
                 case 6:
@@ -362,6 +382,8 @@ namespace Reports
             gridConrolMain.Enabled = !gridConrolMain.Enabled;
 
             grpGeneral.Enabled = !grpGeneral.Enabled;
+            //grpInterval.Enabled = !grpInterval.Enabled;
+            //grpPeriod.Enabled = !grpPeriod.Enabled;
             gridControlDetail.Enabled = true;
             gViewDetail.OptionsBehavior.Editable = !gViewDetail.OptionsBehavior.Editable;
 
@@ -378,13 +400,13 @@ namespace Reports
             lblTotalPoints.Enabled = !lblTotalPoints.Enabled;
 
         }
-        private async void BtnCancel_Click(object sender, EventArgs e)
+        private  void BtnCancel_Click(object sender, EventArgs e)
         {
             var report = (ReportDefinition)_bindingSourceMain.Current;
             var dialogResult = DialogResult.No;
-            var reportDb = await ReportDefinition.GetById(DataConnection(), report.reportdefinitionid);
+            var reportDb = ReportDefinition.GetById(DataConnection(), report.reportdefinitionid);
             var changesReport = (reportDb != null && !report.Equals(reportDb));
-            var changesHistPoints = Task.Run(HistPointCompare).Result;
+            var changesHistPoints =HistPointCompare();
 
 
             if (changesReport || changesHistPoints.Count > 0)
@@ -405,15 +427,15 @@ namespace Reports
             Select_Detail(report.reportdefinitionid, State.View);
         }
 
-        public async Task<List<HistPoint>> HistPointCompare()
+        public List<HistPoint> HistPointCompare()
         {
             var report = (ReportDefinition)_bindingSourceMain.Current;
             var gridList = (List<HistPoint>)_bindingSourceDetail.List;
-            var listDb = await ReportDefinition.GetHistPoints(DataConnection(), report.reportdefinitionid);
+            var listDb = ReportDefinition.GetHistPoints(DataConnection(), report.reportdefinitionid);
             var result = gridList.Except(listDb).ToList();
             return result;
         }
-        private async void BtnSave_Click(object sender, EventArgs e)
+        private  void BtnSave_Click(object sender, EventArgs e)
         {
             var report = (ReportDefinition)_bindingSourceMain.Current;
             var id = report.reportdefinitionid;
@@ -431,7 +453,7 @@ namespace Reports
             switch (report.sampletimeformatid)
             {
                 case 1:
-                    string[] info = { spinSampleHours.EditValue.ToString(), spinSampleMins.EditValue.ToString(), spinSampleSecs.EditValue.ToString() };
+                    string[] info = { spinSampleHours.EditValue.ToString(), spinSampleMinutes.EditValue.ToString(), spinSampleSecs.EditValue.ToString() };
                     report.sampletimeperiodinfo = string.Join(":", info);
                     break;
                 case 6:
@@ -444,7 +466,7 @@ namespace Reports
 
             if (report.HistPoints == null)
             {
-                report.HistPoints = await ReportDefinition.GetHistPoints(DataConnection(), id);
+                report.HistPoints =  ReportDefinition.GetHistPoints(DataConnection(), id);
             }
 
             if (report.HistPoints != null)
@@ -458,13 +480,13 @@ namespace Reports
 
             if (id == 0)
             {
-                var reportDefId = await ReportDefinition.Insert(DataConnection(), report);
+                var reportDefId = ReportDefinition.Insert(DataConnection(), report);
                 if (report.HistPoints != null)
                     for (var i = 0; i < report.HistPoints.Count; i++)
                     {
                         report.HistPoints[i].pointposn = i + 1;
                         report.HistPoints[i].reportdefinitionid = reportDefId;
-                        await HistPoint.Insert(DataConnection(), report.HistPoints[i]);
+                        HistPoint.Insert(DataConnection(), report.HistPoints[i]);
                     }
 
                 return;
@@ -473,7 +495,7 @@ namespace Reports
 
 
 
-            var changes = Task.Run(HistPointCompare).Result;
+            var changes = HistPointCompare();
 
             if (changes.Count > 0)
             {
@@ -482,19 +504,19 @@ namespace Reports
                     if (p.reportdefinitionid == 0)
                     {
                         p.reportdefinitionid = report.reportdefinitionid;
-                        await HistPoint.Insert(DataConnection(), p);
+                        HistPoint.Insert(DataConnection(), p);
                     }
                     else
                     {
-                        await HistPoint.Update(DataConnection(), p);
+                        HistPoint.Update(DataConnection(), p);
                     }
                 }
                 changes.Clear();
             }
 
-            if (!report.Equals(await ReportDefinition.GetById(DataConnection(), report.reportdefinitionid)))
+            if (!report.Equals( ReportDefinition.GetById(DataConnection(), report.reportdefinitionid)))
             {
-                await ReportDefinition.Update(DataConnection(), report);
+                 ReportDefinition.Update(DataConnection(), report);
             }
 
 
@@ -503,7 +525,7 @@ namespace Reports
                 var delHistPoints = new List<int>(_deletedHistpoints);
                 foreach (var p in delHistPoints)
                 {
-                    await HistPoint.Delete(DataConnection(), p);
+                    HistPoint.Delete(DataConnection(), p);
                     _deletedHistpoints.Remove(p);
                 }
             }
@@ -515,7 +537,7 @@ namespace Reports
             var report = (ReportDefinition)_bindingSourceMain.Current;
             if (report.reporttypeid != 1) return;
             var date = DateTime.Now;
-            var target = CreateTarget(report, date, date).Result;
+            var target = CreateTarget(report, date, date);
             target.GetAttr();
             gViewDetail.RefreshData();
         }
@@ -583,7 +605,7 @@ namespace Reports
             var timeType = Convert.ToInt32(lookUpEdit.EditValue);
             var arr = VisibilitySampleIntervals(timeType);
             spinSampleHours.Visible = arr[0];
-            spinSampleMins.Visible = arr[1];
+            spinSampleMinutes.Visible = arr[1];
             spinSampleSecs.Visible = arr[2];
             cmbFractionOfSec.Visible = arr[3];
 
@@ -634,7 +656,7 @@ namespace Reports
             Timer_Stop(true);
             TaskPerform();
         }
-        private async void TaskPerform()
+        private  void TaskPerform()
         {
             var now = DateTime.Now;
             var list = ((List<ReportDefinition>)_bindingSourceMain.List).Where(w =>
@@ -650,9 +672,9 @@ namespace Reports
                 {
                     var end = autoReport.nextevent.Value;
                     var start = HelpersAdapter.DateCalc(autoReport.nextevent.Value, autoReport.timeperiodinfo, autoReport.timeformatid, true);
-                    var target = await Task.Run(() => CreateTarget(autoReport, start, end));
+                    var target =  CreateTarget(autoReport, start, end);
                     SwitchWhenGenerate();
-                    var result = await Task.Run(() => target.Generate());
+                    var result =  target.Generate();
                     SwitchWhenGenerate(true);
                     if (!result)
                     {
@@ -660,18 +682,18 @@ namespace Reports
                     }
                     autoReport.nextevent = HelpersAdapter.DateCalc(autoReport.nextevent.Value, autoReport.timeperiodinfo, autoReport.timeformatid);
                     autoReport.lastused = DateTime.Now;
-                    await ReportDefinition.Update(DataConnection(), autoReport);
+                     ReportDefinition.Update(DataConnection(), autoReport);
                     // this.Invoke(new Action(() => gViewMain.RefreshData()));
                 }
             }
             Timer_Start();
         }
-        private async Task<IReport> CreateTarget(ReportDefinition report, DateTime start, DateTime end)
+        private IReport CreateTarget(ReportDefinition report, DateTime start, DateTime end)
         {
             var id = report.reportdefinitionid;
 
-            report.HistPoints = await ReportDefinition.GetHistPoints(DataConnection(), report.reportdefinitionid);
-            report.Historians = await Historian.GetAll(DataConnection());
+            report.HistPoints = ReportDefinition.GetHistPoints(DataConnection(), report.reportdefinitionid);
+            report.Historians = Historian.GetAll(DataConnection());
 
             switch (report.reporttypeid)
             {
@@ -708,18 +730,18 @@ namespace Reports
             Select_Detail(GridControl.NewItemRowHandle, State.New);
 
         }
-        private async void OnCopyRowClick(object sender, EventArgs e)
+        private  void OnCopyRowClick(object sender, EventArgs e)
         {
             var report = (ReportDefinition)_bindingSourceMain.Current;
             report.reportname += " - Копия";
-            var id = await ReportDefinition.Insert(DataConnection(), report);
+            var id = ReportDefinition.Insert(DataConnection(), report);
             var points = _bindingSourceDetail.List;
             foreach (HistPoint item in points)
             {
                 var item1 = new HistPoint();
                 item.reportdefinitionid = id;
 
-                await HistPoint.Insert(DataConnection(), item);
+                HistPoint.Insert(DataConnection(), item);
             }
             DataBinding(true);
 
@@ -730,7 +752,7 @@ namespace Reports
             barButtonGenerate.Enabled = enabled;
 
         }
-        private async void OnGenerateRowClick(object sender, EventArgs eventArgs)
+        private  void OnGenerateRowClick(object sender, EventArgs eventArgs)
         {
             using (var frmInput = new FormInputDates())
             {
@@ -741,19 +763,19 @@ namespace Reports
                 frmInput.DateEnd = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
                 frmInput.DateStart = frmInput.DateEnd.Subtract(TimeSpan.Parse(report.timeperiodinfo));
                 if (frmInput.ShowDialog() != DialogResult.OK) return;
-                var target = await Task.Run(() => CreateTarget(report, frmInput.DateStart, frmInput.DateEnd));
+                var target =   CreateTarget(report, frmInput.DateStart, frmInput.DateEnd);
                 target.MultiSheets = frmInput.SingleFile;
                 SwitchWhenGenerate();
-                var result = await Task.Run(() => target.Generate());
+                var result =  target.Generate();
                 SwitchWhenGenerate(true);
                 if (!result) return;
                 report.lastused = DateTime.Now;
-                await ReportDefinition.Update(DataConnection(), report);
+                ReportDefinition.Update(DataConnection(), report);
             }
             this.Invoke(new Action(() => gViewMain.RefreshData()));
             Timer_Start();
         }
-        private async void OnDeleteRowClickAsync(object sender, EventArgs e)
+        private  void OnDeleteRowClickAsync(object sender, EventArgs e)
         {
 
             var handles = gViewMain.GetSelectedRows();
@@ -774,11 +796,11 @@ namespace Reports
                 var name = gViewMain.GetRowCellValue(item, "reportname");
                 _log.Info($"Отчет {name} удален!");
                 var id = (int)gViewMain.GetRowCellValue(item, "reportdefinitionid");
-                await ReportDefinition.Delete(DataConnection(), id);
-                var points = await ReportDefinition.GetHistPoints(DataConnection(), id);
+                ReportDefinition.Delete(DataConnection(), id);
+                var points = ReportDefinition.GetHistPoints(DataConnection(), id);
                 foreach (var point in points.Select(s => s.histpointid))
                 {
-                    await HistPoint.Delete(DataConnection(), point);
+                    HistPoint.Delete(DataConnection(), point);
                 }
 
             }

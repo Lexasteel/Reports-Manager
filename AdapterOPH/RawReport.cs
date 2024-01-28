@@ -30,7 +30,7 @@ namespace AdapterOPH
         private readonly Logger _log = LogManager.GetCurrentClassLogger();
 
         public delegate void ReportEvent(object sender, ReportEventArgs e);
-        public event IReport.ReportEvent ReportChanged;
+        public event ReportEvent ReportChanged;
 
         public bool Generate()
         {
@@ -96,7 +96,7 @@ namespace AdapterOPH
             throw new NotImplementedException();
         }
 
-        public void State(int percent, int? level, string? message)
+        public void State(int percent, int? level, string message)
         {
             ReportChanged?.Invoke(this, new ReportEventArgs(percent, level, message));
             this.Progress = percent;
@@ -152,7 +152,7 @@ namespace AdapterOPH
 
                     foreach (HistPoint item in histPoints)
                     {
-                        item.FValues = new SortedDictionary<DateTime, float>();
+                        item.FValues = new Dictionary<DateTime, float>();
                     }
                     continue;
                 }
@@ -177,7 +177,7 @@ namespace AdapterOPH
                             take = take / 2;
                             foreach (HistPoint item in histPoints)
                             {
-                                item.FValues = new SortedDictionary<DateTime, float>();
+                                item.FValues = new Dictionary<DateTime, float>();
                             }
                         
                     }
